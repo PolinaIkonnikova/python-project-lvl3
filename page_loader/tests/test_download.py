@@ -1,8 +1,7 @@
 import os
 import requests_mock
 import tempfile
-from page_loader.page_output import download
-from page_loader.page_parser import get_resources
+from page_loader.page_output import download, get_resources
 
 
 def test_download():
@@ -27,5 +26,3 @@ def test_get_resources():
     with tempfile.TemporaryDirectory() as temp:
         a = get_resources(fixt, url, temp)
     assert a == 7
-
-
