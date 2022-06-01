@@ -23,5 +23,3 @@ test-coverage:
 	poetry run pytest --cov=page-loader --cov-report xml
 
 
-
-

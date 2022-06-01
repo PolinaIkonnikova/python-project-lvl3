@@ -3,11 +3,6 @@ import re
 from urllib.parse import urlparse
 
 
-def name_dir(url, output_path):
-    new_dir_name = true_name(url, is_dir=True)
-    return os.path.join(output_path, new_dir_name)
-
-
 def make_path(output_path, file_name):
     return os.path.join(output_path, file_name)
 
