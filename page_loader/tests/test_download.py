@@ -3,10 +3,10 @@ import requests_mock
 import tempfile
 import shutil
 import pytest
-from page_loader.page_output import download, get_resources, make_dir, writing_page, download_source
+from page_loader.page_output import download, get_resources, writing_page, download_source, make_dir
 
 
-@pytest.mark.skip
+#@pytest.mark.skip
 @pytest.fixture
 def test_make_new_dir(normal_url_hexlet, some_string, dir_name_hexlet):
     url = normal_url_hexlet
@@ -23,7 +23,7 @@ def test_make_new_dir(normal_url_hexlet, some_string, dir_name_hexlet):
         assert 1
 
 
-@pytest.mark.skip
+#@pytest.mark.skip
 @pytest.fixture
 def test_download_page(fake_resources, normal_url_hexlet, html_name_hexlet):
     url = normal_url_hexlet
@@ -37,7 +37,7 @@ def test_download_page(fake_resources, normal_url_hexlet, html_name_hexlet):
             assert os.path.exists(new_page)
 
 
-@pytest.mark.skip
+#@pytest.mark.skip
 @pytest.fixture
 def test_writing_page(some_string):
 
@@ -48,7 +48,7 @@ def test_writing_page(some_string):
         assert 1
 
 
-@pytest.fixrure
+@pytest.fixture
 def test_download_source(normal_img, fake_img):
     with tempfile.TemporaryDirectory() as temp:
         image_for_test = os.path.join(temp, '1.jpg')
@@ -59,7 +59,7 @@ def test_download_source(normal_img, fake_img):
             assert 0
 
 
-@pytest.mark.skip
+#@pytest.mark.skip
 @pytest.fixture
 def test_get_resources(fake_downloading, normal_url_hexlet):
     url = normal_url_hexlet
@@ -75,5 +75,3 @@ def test_get_resources(fake_downloading, normal_url_hexlet):
         assert os.path.exists(os.path.join(temp, file_name1))
         assert os.path.exists(os.path.join(temp, file_name2))
         assert not os.path.exists(os.path.join(temp, file_name3))
-
-

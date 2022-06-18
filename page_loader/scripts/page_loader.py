@@ -9,7 +9,7 @@ def main():
                         help='your home path')
     parser.add_argument('url', type=str, help='path of loaded file')
     args = parser.parse_args()
-    print(download(args.output, args.url))
+    download(args.url, args.output)
 
 
 if __name__ == '__main__':

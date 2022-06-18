@@ -1,13 +1,10 @@
 import os
 import requests
-import logging
 import sys
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup as bs
 from .name_generator import true_name, make_path
-
-logging.basicConfig(level=logging.DEBUG, format='%(name)s - %(levelname)s - %(message)s - %(asctime)s')
-logger1 = logging.getLogger(__name__)
+from .logs.logs_config import logger, err_logger
 
 
 def make_page(url, output_path):
@@ -18,15 +15,16 @@ def make_page(url, output_path):
 def writing_page(url, new_page_path):
     try:
         r = requests.get(url)
+        if r.status_code != 200:
+            logger.warning(f'Something went wrong, a response code is {r.status_code}')
+        with open(new_page_path, 'w') as p:
+            p.write(r.text)
     except (requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema):
-        print('HTTP error occured. Seems this is not a page!')
+        err_logger.error('HTTP error occured. Seems this is not a page!')
         sys.exit()
     except requests.exceptions.ConnectionError:
-        print('Connection failed, try again!')
+        err_logger.error('Connection failed, try again!')
         sys.exit()
-
-    with open(new_page_path, 'w') as p:
-        p.write(r.text)
 
 
 def make_dir(url, output_path):
@@ -34,10 +32,10 @@ def make_dir(url, output_path):
     try:
         os.mkdir(new_dir_path)
     except (FileNotFoundError, NotADirectoryError):
-        print("This directory doesn't exist. Please change another dir!")
+        err_logger.error("This directory doesn't exist. Please change another dir!")
         sys.exit(1)
     except PermissionError:
-        print("You doesn't have access rights, please choose another dir")
+        err_logger.error("You doesn't have access rights, please choose another dir")
         sys.exit(1)
     return new_dir_path
 
@@ -45,13 +43,11 @@ def make_dir(url, output_path):
 def download_source(path, url):
     try:
         r = requests.get(url)
-        if r.status_code != 200:
-            logger1.info(f'something went wrong, a response code {r.status_code}')
-        else:
-            with open(path, 'wb') as p:
-                p.write(r.content)
+        with open(path, 'wb') as p:
+            p.write(r.content)
     except requests.RequestException:
-        print('Something went wrong')
+        err_logger.error('Something went wrong')
+        sys.exit(1)
 
 
 def get_resources(html_page, parent_url, dir_path, downloading=download_source):
@@ -68,6 +64,7 @@ def get_resources(html_page, parent_url, dir_path, downloading=download_source):
 
                 if urlparse(source).netloc != urlparse(parent_url).netloc:
                     continue
+
                 res_name = true_name(source)
                 res_path = make_path(dir_path, res_name)
                 downloading(res_path, source)
@@ -76,17 +73,21 @@ def get_resources(html_page, parent_url, dir_path, downloading=download_source):
         hp.write(soup.prettify())
 
 
-def download(url, output_path='home_path', downloading_res = get_resources):
+def download(url, output_path, downloading_res=get_resources):
     if output_path == 'home_path':
         output_path = os.getcwd()
 
-    new_dir = make_dir(url, output_path)
-    #logger1.info("that's a new dir - {}".format(name_new_dir))
     new_page_path = make_page(url, output_path)
-    #logger1.info("that's a new page - {}".format(new_page))
     writing_page(url, new_page_path)
+    logger.debug(f"that's a new page - {new_page_path}")
+
+    try:
+        new_dir = make_dir(url, output_path)
+        logger.debug(f"that's a new dir for page's resources - {new_dir}")
+    except FileExistsError:
+        err_logger.error("The directory with page's files exists yet!")
+        sys.exit()
 
     #downloading_res(new_page_path, url, new_dir)
-    return new_page_path
-
+    return err_logger.debug(f'successfull downloading {new_page_path}')
 

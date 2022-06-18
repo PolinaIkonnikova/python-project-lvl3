@@ -10,6 +10,7 @@ normal_url_hexlet = 'https://ru.hexlet.io/courses'
 dir_name_hexlet = 'ru-hexlet-io-courses_files'
 html_name_hexlet = 'ru-hexlet-io-courses.html'
 
+
 @pytest.fixture
 def fake_resources(path_page, url, name_new_dir):
     pass
