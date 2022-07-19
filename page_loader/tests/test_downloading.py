@@ -1,33 +1,34 @@
 import os
 import requests_mock
 import tempfile
-import shutil
 import pytest
-from page_loader.page_output import download, get_resources, writing_page, download_source, make_dir
+import shutil
+from page_loader.page_output import download, download_source, get_resources
 
 
-#@pytest.mark.skip
+# some_string = 'olololo.html'
+# url_error_schema = ''
+normal_img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZmNcheLzMthy3Q04NhmZcdewmZG6vq1NjJg&usqp=CAU'
+fake_image = 'htps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZmNcheLzMthy3Q04NhmZcdewmZG6vq1NjJg&usqp=CAU'
+# normal_url_hexlet = 'https://ru.hexlet.io/courses'
+# dir_name_hexlet = 'ru-hexlet-io-courses_files'
+# html_name_hexlet = 'ru-hexlet-io-courses.html'
+
+
 @pytest.fixture
-def test_make_new_dir(normal_url_hexlet, some_string, dir_name_hexlet):
-    url = normal_url_hexlet
-    dir_name = dir_name_hexlet
-    fake_path = some_string
-
-    with tempfile.TemporaryDirectory() as temp:
-        make_dir(url, temp)
-        assert(os.path.exists(os.path.join(temp, dir_name)))
-
-    try:
-        make_dir(url, fake_path)
-    except SystemExit:
-        assert 1
+def fake_resources(*args):
+    pass
 
 
-#@pytest.mark.skip
 @pytest.fixture
-def test_download_page(fake_resources, normal_url_hexlet, html_name_hexlet):
-    url = normal_url_hexlet
-    html_name = html_name_hexlet
+def fake_downloading(path, *args):
+    with open(path, 'x'):
+        pass
+
+@pytest.mark.skip
+def test_download_page(fake_resources):
+    url = 'https://ru.hexlet.io/courses'
+    html_name = 'ru-hexlet-io-courses.html'
     fixt = '/home/ulitka/python-project-lvl3/page_loader/tests/fixtures/before1.html'
     with requests_mock.Mocker() as m:
         m.get(url, text=open(fixt, 'r').read())
@@ -36,20 +37,10 @@ def test_download_page(fake_resources, normal_url_hexlet, html_name_hexlet):
             assert os.path.join(temp, html_name) == new_page
             assert os.path.exists(new_page)
 
-
-#@pytest.mark.skip
-@pytest.fixture
-def test_writing_page(some_string):
-
-    fake_url = 'htps:/' + some_string
-    try:
-        writing_page(fake_url, 'some_path')
-    except SystemExit:
-        assert 1
-
-
-@pytest.fixture
-def test_download_source(normal_img, fake_img):
+@pytest.mark.skip
+def test_download_source():
+    #normal_img = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZmNcheLzMthy3Q04NhmZcdewmZG6vq1NjJg&usqp=CAU'
+    fake_img = 'htps://encrypted-tbn0.gstatic.com/ololo'
     with tempfile.TemporaryDirectory() as temp:
         image_for_test = os.path.join(temp, '1.jpg')
         try:
@@ -59,10 +50,8 @@ def test_download_source(normal_img, fake_img):
             assert 0
 
 
-#@pytest.mark.skip
-@pytest.fixture
-def test_get_resources(fake_downloading, normal_url_hexlet):
-    url = normal_url_hexlet
+def test_get_resources(fake_downloading):
+    url = 'https://ru.hexlet.io/courses'
     file_name1 = 'ru-hexlet-io-assets-application.css'
     file_name2 = 'ru-hexlet-io-packs-js-runtime.js'
     file_name3 = 'cdn2-hexlet-io-assets-menu.css'

@@ -1,6 +1,10 @@
 import os
 import re
 from urllib.parse import urlparse
+from .logs.logs_config import make_logger
+
+
+logger = make_logger()
 
 
 def make_path(output_path, file_name):
@@ -17,4 +21,7 @@ def true_name(url, is_dir=False):
     return '-'.join(re.findall(r'\w+', path_body)) + ending
 
 
-
+def prepare_dir(url, output_path):
+    new_dir = make_path(output_path, true_name(url, is_dir=True))
+    os.mkdir(new_dir)
+    return new_dir
