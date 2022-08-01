@@ -1,7 +1,9 @@
 import requests
 from .for_http import request_http, writing
-from .work_with_files import true_name, make_path
-from .logs.logs_config import make_logger
+from .work_with_files import true_name, make_path, valid_dir
+from .aux.logs_config import mistakes_logging
+from .aux.custom_exceptions import CommonPageLoaderException, RequestsError
+
 
 # fixt = '/home/ulitka/python-project-lvl3/page_loader/tests/fixtures/before1.html'
 # url = 'https://ru.hexlet.io/courses'
@@ -10,24 +12,30 @@ from .logs.logs_config import make_logger
 # print(get_resources(fixt, url, home_path))
 
 
-logger = make_logger()
-
-
 def download_page(url,
                   output_path,
                   get_content=request_http
                   ):
     try:
-        html_path = make_path(output_path, true_name(url))
+        #valid_url(url)
+        new_html = make_path(output_path, true_name(url))
         content = get_content(url)
-        new_html = writing(url, html_path, content)
-    except requests.RequestException as re:
-        raise re
-    except PermissionError as pe:
-        raise pe
-    else:
+        writing(new_html, content)
         return new_html
-
+    except (requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema) as e:
+        #mistakes_logging(e, 2, url)
+        raise CommonPageLoaderException
+    except RequestsError as e:
+        error = e.error
+        url = e.url
+        code = e.code
+        print(error, url, code, sep='\n')
+        #mistakes_logging(error, 7, url, code)
+        raise CommonPageLoaderException
+    except requests.RequestException as e:
+        print(e)
+    #     mistakes_logging(e, 7, url)
+        raise CommonPageLoaderException
 
 
     # try:
@@ -42,4 +50,3 @@ def download_page(url,
     #     raise requests.RequestException(f'Problems with connecting for {url}. Status code is {code}')
     # except requests.RequestException:
     #     logger.error('Something went wrong for downloading')
-

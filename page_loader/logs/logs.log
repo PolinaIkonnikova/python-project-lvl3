@@ -1,4 +1,0 @@
-19-Jun-22 18:53:31 - DEBUG - Starting new HTTPS connection (1): en.wikipedia.org:443
-19-Jun-22 18:53:31 - DEBUG - https://en.wikipedia.org:443 "GET /wiki/Sailor_Moon HTTP/1.1" 200 73755
-19-Jun-22 18:53:32 - DEBUG - that's a new page - /home/ulitka/python-project-lvl3/en-wikipedia-org-wiki-Sailor_Moon.html
-19-Jun-22 18:53:32 - ERROR - The directory with page's already exists!
