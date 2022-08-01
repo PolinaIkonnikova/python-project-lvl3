@@ -1,8 +1,8 @@
 import requests
-from .for_http import request_http, writing
-from .work_with_files import true_name, make_path, valid_dir
+from .for_http import request_http
+from .work_with_files import true_name, make_path, valid_dir, writing
 from .aux.logs_config import mistakes_logging
-from .aux.custom_exceptions import CommonPageLoaderException, RequestsError
+from .aux.custom_exceptions import CommonPageLoaderException, CommonRequestsError
 
 
 # fixt = '/home/ulitka/python-project-lvl3/page_loader/tests/fixtures/before1.html'
@@ -22,14 +22,10 @@ def download_page(url,
         content = get_content(url)
         writing(new_html, content)
         return new_html
-    except (requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema) as e:
-        #mistakes_logging(e, 2, url)
-        raise CommonPageLoaderException
-    except RequestsError as e:
+    except CommonRequestsError as e:
         error = e.error
         url = e.url
         code = e.code
-        print(error, url, code, sep='\n')
         #mistakes_logging(error, 7, url, code)
         raise CommonPageLoaderException
     except requests.RequestException as e:

@@ -2,17 +2,34 @@ import requests_mock
 import tempfile
 import pytest
 from page_loader.page_output import download_page
-from page_loader.aux.custom_exceptions import RequestsError
 from page_loader.for_http import request_http
-from page_loader.aux.custom_exceptions import CommonPageLoaderException
-from tests.fixtures.stubs_and_fixt import FAKE_LINKS
+from page_loader.aux.custom_exceptions import CommonPageLoaderException, CommonRequestsError
+from tests.fixtures.stubs_and_fixt import FAKE_LINKS, get_abs_path_fixture
 
 
-url = FAKE_LINKS['invalid_url1']
-# @pytest.mark.parametrize('wrong_url', ['htps://ru.hexlet.io/courses', 'some_dir.png', '/ru.hexlet.io/courses.html'])
-# def test_requests_http1(wrong_url):
-#     with pytest.raises(RequestsError):
-#         request_http(wrong_url)
+fake_url = FAKE_LINKS['invalid_url1']
+fixt = get_abs_path_fixture('just_file.txt')
+
+
+def test_requests_http1():
+    with requests_mock.Mocker() as m:
+        m.get(fake_url, text=open(fixt, 'r').read(), status_code=200)
+        assert request_http(fake_url) == 'hello'
+        assert request_http(fake_url, bytes=True) == b'hello'
+
+
+@pytest.mark.parametrize('wrong_url', [fake_url, FAKE_LINKS['invalid_url2'],
+                                       FAKE_LINKS['invalid_url3'], FAKE_LINKS['invalid_url4']])
+def test_requests_http2(wrong_url):
+    with pytest.raises(CommonRequestsError):
+        request_http(wrong_url)
+
+
+def test_requests_http3():
+    with requests_mock.Mocker() as m:
+        m.get(fake_url, text=open(fixt, 'r').read(), status_code=500)
+        with pytest.raises(CommonRequestsError):
+            request_http(fake_url)
 
 
 # def test_download_page_mistakes():
@@ -33,18 +50,9 @@ url = FAKE_LINKS['invalid_url1']
 #         with pytest.raises(CommonPageLoaderException):
 #             with tempfile.TemporaryDirectory() as temp:
 #                 new_page = download_page(url, temp)
-
             #assert str(e.value) == 'expected message from exception'
 
 def test_download_page_mistakes3():
     with pytest.raises(CommonPageLoaderException):
         with tempfile.TemporaryDirectory() as temp:
-            new_page = download_page(url, temp)
-
-
-def test_requests_http1():
-    with requests_mock.Mocker() as m:
-        m.get(url, status_code=500)
-        with pytest.raises(RequestsError) as e:
-            request_http(url)
-            print(e)
+            download_page(fake_url, temp)

@@ -43,3 +43,12 @@ def prepare_dir(url, output_path):
     except FileExistsError:
         #mistakes_logging(e, 5, new_dir)
         raise CommonPageLoaderException
+
+
+def writing(file, data, bytes=False):
+    if bytes is True:
+        tag = 'wb'
+    else:
+        tag = 'w'
+    with open(file, tag) as f:
+        f.write(data)

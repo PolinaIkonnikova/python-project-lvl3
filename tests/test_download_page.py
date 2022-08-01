@@ -4,8 +4,7 @@ import pytest
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
 from tests.fixtures.stubs_and_fixt import fake_data, FAKE_LINKS, get_abs_path_fixture
 from page_loader.page_output import download_page
-from page_loader.work_with_files import true_name, valid_dir
-from page_loader.for_http import writing
+from page_loader.work_with_files import true_name, valid_dir, writing
 
 
 url = FAKE_LINKS['normal_url']

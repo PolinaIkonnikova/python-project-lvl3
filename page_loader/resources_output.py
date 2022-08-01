@@ -1,10 +1,10 @@
-from page_loader.for_http import valid_link, request_http, writing
+from page_loader.for_http import valid_link, request_http
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup as bs
-from page_loader.work_with_files import true_name, make_path
+from page_loader.work_with_files import true_name, make_path, writing
 # from page_loader.aux.logs_config import mistakes_logging, success_logging
 from page_loader.progress_bar import download_progress
-from page_loader.aux.custom_exceptions import RequestsError
+from page_loader.aux.custom_exceptions import CommonRequestsError
 
 
 def is_parent_netloc(url, parent_url):
@@ -79,7 +79,7 @@ def download_resources(resources_dict, output_path, writing_res=loading_res):
         for res in resources_dict:
             try:
                 writing_res(res, output_path)
-            except RequestsError as e:
+            except CommonRequestsError as e:
                 error = e.error
                 url = e.url
                 code = e.code
