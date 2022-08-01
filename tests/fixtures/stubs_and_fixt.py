@@ -12,7 +12,7 @@ FAKE_LINKS = {'normal_url': 'https://ru.hexlet.io/courses',
 
 
 def get_abs_path_fixture(fixt):
-    return os.path.realpath(os.path.join('page_loader/tests/fixtures', fixt))
+    return os.path.realpath(os.path.join('tests/fixtures', fixt))
 
 
 def fake_resources(*args):

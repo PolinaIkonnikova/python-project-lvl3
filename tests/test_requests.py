@@ -1,4 +1,3 @@
-import os
 import requests_mock
 import tempfile
 import pytest
@@ -6,7 +5,7 @@ from page_loader.page_output import download_page
 from page_loader.aux.custom_exceptions import RequestsError
 from page_loader.for_http import request_http
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
-from page_loader.tests.fixtures.stubs_and_fixt import FAKE_LINKS
+from tests.fixtures.stubs_and_fixt import FAKE_LINKS
 
 
 url = FAKE_LINKS['invalid_url1']

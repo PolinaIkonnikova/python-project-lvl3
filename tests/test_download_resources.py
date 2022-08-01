@@ -4,7 +4,7 @@ import pytest
 import shutil
 from bs4 import BeautifulSoup as bs
 from page_loader.resources_output import get_resources, download_resources
-from page_loader.tests.fixtures.stubs_and_fixt import fake_writing, FAKE_LINKS, get_abs_path_fixture
+from tests.fixtures.stubs_and_fixt import fake_writing, FAKE_LINKS, get_abs_path_fixture
 from page_loader.work_with_files import prepare_dir
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
 
