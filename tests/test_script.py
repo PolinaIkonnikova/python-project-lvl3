@@ -1,6 +1,6 @@
 import requests_mock
 import pytest
-from page_loader.scripts.page_loader_script import download_page, main
+from page_loader.scripts.page_loader import download_page, main
 from tests.fixtures.stubs_and_fixt import get_abs_path_fixture, FAKE_LINKS
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env python
-import os
+
 import sys
-import errno
 from page_loader.arg_parser import create_parser
 from page_loader.page_output import download_page
 from page_loader.resources_output import download_resources, get_resources
