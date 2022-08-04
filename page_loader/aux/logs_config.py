@@ -2,14 +2,13 @@ import logging
 import sys
 
 
-log_path = 'aux/logs.log'
 FORMAT1 = '%(asctime)s - %(levelname)s - %(message)s'
 FORMAT2 = '%(message)s'
 DATE_FORMAT = '%d-%b-%y %H:%M:%S'
 
 
 def get_file_handler():
-    file_handler = logging.FileHandler(log_path, 'w')
+    file_handler = logging.FileHandler('page_loader/aux/logs.log', 'w')
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(logging.Formatter(FORMAT1,
                                                 datefmt=DATE_FORMAT))
