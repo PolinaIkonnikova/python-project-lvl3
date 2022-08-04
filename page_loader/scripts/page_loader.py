@@ -5,31 +5,32 @@ from page_loader.arg_parser import create_parser
 from page_loader.page_output import download_page
 from page_loader.resources_output import download_resources, get_resources
 from page_loader.work_with_files import prepare_dir, valid_dir
-from page_loader.aux.logs_config import success_logging
-from page_loader.aux.custom_exceptions import CommonPageLoaderException
+from page_loader.aux.logs_config import success_logger
+from page_loader.aux.custom_exceptions import CommonPageLoaderException, NoResourcesException
+
+
+logger = success_logger(__name__)
 
 
 def downloading(url, output_path):
     try:
         output_path = valid_dir(output_path)
-        if url == 'no_page':
-            #лог, что нет страницы
-            sys.exit(1)
         page_path = download_page(url, output_path)
-    except (NotADirectoryError, PermissionError, FileNotFoundError, FileExistsError) as e:
-        sys.exit(1)
-    except CommonPageLoaderException as e:
+    except CommonPageLoaderException:
         sys.exit(1)
     else:
         try:
+            logger.debug('Cтраница скачалась, переходим к ресурсам')
             new_dir = prepare_dir(url, output_path)
-        #success_logging(1, new_dir)
+            logger.debug(f'Директория для ресурсов {new_dir}')
             resources = get_resources(page_path, url, new_dir)
             download_resources(resources, output_path)
-            print('success!')
             #можно сделать счетчик, сколько ресурсов загружено, сколько ошибочно
-            #success_logging(2, page_path)
-        except CommonPageLoaderException as e:
+            logger.info(f'Cтраница успешно сохранена {page_path}')
+            sys.exit(0)
+        except NoResourcesException:
+            sys.exit(0)
+        except FileExistsError:
             sys.exit(2)
 
 

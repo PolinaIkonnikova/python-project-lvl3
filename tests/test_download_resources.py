@@ -6,12 +6,12 @@ from bs4 import BeautifulSoup as bs
 from page_loader.resources_output import get_resources, download_resources
 from tests.fixtures.stubs_and_fixt import fake_writing, FAKE_LINKS, get_abs_path_fixture
 from page_loader.work_with_files import prepare_dir
-from page_loader.aux.custom_exceptions import CommonPageLoaderException
+from page_loader.aux.custom_exceptions import NoResourcesException
 
 
 url = FAKE_LINKS['normal_url']
 dir_name = FAKE_LINKS['dir_for_resources']
-html_name_hexlet = FAKE_LINKS['new_html_dir']
+html_name_hexlet = FAKE_LINKS['new_html_name']
 fixt1 = get_abs_path_fixture('one_png.html')
 fixt2 = get_abs_path_fixture('before1.html')
 
@@ -25,26 +25,29 @@ def test_prepare_dir1():
 
 def test_prepare_dir2():
     with tempfile.TemporaryDirectory() as d:
-        with pytest.raises(CommonPageLoaderException):
+        with pytest.raises(FileExistsError):
             os.mkdir(os.path.join(d, dir_name))
             prepare_dir(url, d)
 
 
-def test_download_resources():
+def test_download_resources1():
     res_dict1 = [{'tag': 'script',
                   'source': "https://ru.hexlet.io/packs/js/runtime.js",
                   'res_path': "ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js"},
                  {'source': "https://ru.hexlet.io/meow.png",
                   'tag': 'img',
                   'res_path': "meow.png"}]
-    res_dict2 = []
-
     with tempfile.TemporaryDirectory() as temp:
         os.mkdir(os.path.join(temp, dir_name))
         download_resources(res_dict1, temp, writing_res=fake_writing)
         assert os.path.exists(os.path.join(temp, "meow.png"))
         assert os.path.exists(os.path.join(temp, "ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js"))
-        assert download_resources(res_dict2, temp) is None
+
+
+def test_download_resources2():
+    res_dict = []
+    with pytest.raises(NoResourcesException):
+        download_resources(res_dict, 'some_dir', writing_res=fake_writing)
 
 
 def test_get_resources1():

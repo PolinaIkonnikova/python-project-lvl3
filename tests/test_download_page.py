@@ -9,7 +9,7 @@ from page_loader.work_with_files import true_name, valid_dir, writing
 
 url = FAKE_LINKS['normal_url']
 dir_name = FAKE_LINKS['dir_for_resources']
-html_name_hexlet = FAKE_LINKS['new_html_dir']
+html_name_hexlet = FAKE_LINKS['new_html_name']
 fixt1 = get_abs_path_fixture('just_file.txt')
 fixt2 = get_abs_path_fixture('empty.html')
 fixt3 = get_abs_path_fixture('meow.jpeg')
@@ -29,7 +29,7 @@ def test_true_dir_naming():
 
 @pytest.mark.parametrize('path', [FAKE_LINKS['invalid_url3'], 'some_dir.png', url])
 def test_valid_dir(path):
-    with pytest.raises(NotADirectoryError):
+    with pytest.raises(CommonPageLoaderException):
         valid_dir(path)
 
 
@@ -64,9 +64,9 @@ def test_download_page1():
 
 
 @pytest.mark.parametrize('wrong_url', [FAKE_LINKS['invalid_url1'], FAKE_LINKS['invalid_url3'],
-                                       FAKE_LINKS['new_html_dir']])
+                                       html_name_hexlet])
 def test_download_page2(wrong_url):
     with tempfile.TemporaryDirectory() as d:
-        with pytest.raises(CommonPageLoaderException) as e:
+        with pytest.raises(CommonPageLoaderException):
             download_page(wrong_url, d)
             #assert e.value

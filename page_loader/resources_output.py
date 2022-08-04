@@ -2,10 +2,11 @@ from page_loader.for_http import valid_link, request_http
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup as bs
 from page_loader.work_with_files import true_name, make_path, writing
-# from page_loader.aux.logs_config import mistakes_logging, success_logging
+from page_loader.aux.logs_config import mistake_logger
 from page_loader.progress_bar import download_progress
-from page_loader.aux.custom_exceptions import CommonRequestsError
+from page_loader.aux.custom_exceptions import CommonRequestsError, NoResourcesException
 
+logger = mistake_logger(__name__)
 
 def is_parent_netloc(url, parent_url):
     cond1 = urlparse(url).netloc
@@ -72,17 +73,13 @@ def loading_res(res_description, output_path):
 
 def download_resources(resources_dict, output_path, writing_res=loading_res):
     if not resources_dict:
-        #success_logging(3)
-        return
+        logger.error('На странице нет ресурсов, доступных для скачивания.')
+        raise NoResourcesException
     res_count = len(resources_dict)
     with download_progress(res_count) as p:
         for res in resources_dict:
             try:
                 writing_res(res, output_path)
-            except CommonRequestsError as e:
-                error = e.error
-                url = e.url
-                code = e.code
-                #mistakes_logging(error, 7, url, code, exit=False)
+            except CommonRequestsError:
                 continue
             p.next()

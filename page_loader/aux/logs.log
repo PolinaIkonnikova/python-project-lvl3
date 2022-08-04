@@ -1,0 +1,23 @@
+04-Aug-22 20:13:41 - DEBUG - Cтраница скачалась, переходим к ресурсам
+04-Aug-22 20:13:41 -04-Aug-22 20:13:41 - ERROR - На странице нет ресурсов, доступных для скачивания.
+- Cтраница успешно сохранена /tmp/tmp870bkkd0/ru-hexlet-io-courses.html
+04-Aug-22 20:13:41 - DEBUG - Cтраница скачалась, переходим к ресурсам
+04-Aug-22 20:13:41 - DEBUG - Директория для ресурсов /tmp/tmpewzz5eay/ru-hexlet-io-courses_files
+04-Aug-22 20:13:41 - DEBUG - Cтраница скачалась, переходим к ресурсам
+4-Aug-22 20:13:41 - WARNING - Кажется, выбранная директория не существует или не директория вовсе!
+04-Aug-22 20:13:41 - WARNING - Папка для ресурсов уже существует, и возможно страница уже скачана. Стоит перепроверить!
+урс не скачан.
+04-Aug-22 20:13:41 - DEBUG - all ok
+ru.hexlet.ru', port=443): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7fef1b460250>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+04-Aug-22 20:13:41 - DEBUG - С /ololo произошла неприятность : Invalid URL '/ololo': No scheme supplied. Perhaps you meant http:///ololo?
+04-Aug-22 20:13:41 - DEBUG - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fef1b460100>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+04-Aug-22 20:13:41 - DEBUG - Ресурс htps://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
+04-Aug-22 20:13:41 - DEBUG - С htps://ru.hexlet.io/courses произошла неприятность : No connection adapters were found for 'htps://ru.hexlet.io/courses'
+04-Aug-22 20:13:41 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись
+04-Aug-22 20:13:41 - DEBUG - Ресурс https://ru.hexlet.io/assets/professions/nodejs.png не скачан, код ответа сервера - 404.
+04-Aug-22 20:13:41 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись
+04-Aug-22 20:13:41 - DEBUG - Ресурс https://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
+04-Aug-22 20:13:41 - DEBUG - С htps://ru.hexlet.io/courses произошла неприятность : No connection adapters were found for 'htps://ru.hexlet.io/courses'
+04-Aug-22 20:13:41 - DEBUG - С /ololo произошла неприятность : Invalid URL '/ololo': No scheme supplied. Perhaps you meant http:///ololo?
+04-Aug-22 20:13:41 - DEBUG - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fef1b4754f0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+04-Aug-22 20:13:41 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись

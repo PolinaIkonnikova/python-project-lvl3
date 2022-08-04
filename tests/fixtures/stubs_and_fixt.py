@@ -4,7 +4,7 @@ import os
 FAKE_LINKS = {'normal_url': 'https://ru.hexlet.io/courses',
              'home': 'home_path',
              'dir_for_resources': 'ru-hexlet-io-courses_files',
-             'new_html_dir': 'ru-hexlet-io-courses.html',
+             'new_html_name': 'ru-hexlet-io-courses.html',
              'invalid_url1': 'htps://ru.hexlet.io/courses',
              'invalid_url2': 'https://ru.hexlet.ru/courses',
              'invalid_url3': '/ololo',
@@ -21,14 +21,10 @@ def fake_resources(*args):
     pass
 
 
-def fake_downloading(path, *args):
-    with open(path, 'x'):
-        pass
-
-
 def fake_writing(res, path, *args):
     res_path = os.path.join(path, res['res_path'])
-    fake_downloading(res_path)
+    with open(res_path, 'x'):
+        pass
 
 
 def fake_data(*args):
@@ -36,3 +32,4 @@ def fake_data(*args):
     with open(file, 'r') as f:
         fake_text = f.read()
     return fake_text
+

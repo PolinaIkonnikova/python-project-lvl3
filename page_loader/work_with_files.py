@@ -1,8 +1,11 @@
 import os
 import re
 from urllib.parse import urlparse
-from .aux.logs_config import mistakes_logging
+from .aux.logs_config import mistake_logger
 from .aux.custom_exceptions import CommonPageLoaderException
+
+
+logger = mistake_logger(__name__)
 
 
 def home_dir():
@@ -10,15 +13,19 @@ def home_dir():
 
 
 def valid_dir(output_path):
-    if output_path == 'home_path':
-        output_path = home_dir()
-    if not os.path.isdir(output_path):
-        #логирование
-        raise NotADirectoryError
-    if not os.access(output_path, os.R_OK & os.W_OK & os.X_OK):
-        #логирование
-        raise PermissionError
-    return output_path
+    try:
+        if output_path == 'home_path':
+            output_path = home_dir()
+        if not os.path.isdir(output_path):
+            logger.warning('Кажется, выбранная директория не существует или не директория вовсе!')
+            raise CommonPageLoaderException
+        if not os.access(output_path, os.R_OK & os.W_OK & os.X_OK):
+            logger.warning('Придется выбрать другую директорию, малыш, ты еще слишком мал для использования этой.')
+            raise CommonPageLoaderException
+        return output_path
+    except (FileNotFoundError, FileExistsError):
+        logger.warning('Что-то не так с выбранной директорией, давай другую!')
+        raise CommonPageLoaderException
 
 
 def make_path(output_path, file_name):
@@ -40,9 +47,9 @@ def prepare_dir(url, output_path):
     try:
         os.mkdir(new_dir)
         return new_dir
-    except FileExistsError:
-        #mistakes_logging(e, 5, new_dir)
-        raise CommonPageLoaderException
+    except FileExistsError as e:
+        logger.warning('Папка для ресурсов уже существует, и возможно страница уже скачана. Стоит перепроверить!')
+        raise
 
 
 def writing(file, data, bytes=False):
