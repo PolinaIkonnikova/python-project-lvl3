@@ -8,14 +8,8 @@ from .aux.custom_exceptions import CommonPageLoaderException
 logger = mistake_logger(__name__)
 
 
-def home_dir():
-    return os.path.expanduser(os.getenv('HOME'))
-
-
 def valid_dir(output_path):
     try:
-        if output_path == 'home_path':
-            output_path = home_dir()
         if not os.path.isdir(output_path):
             logger.warning('Кажется, выбранная директория не существует или не директория вовсе!')
             raise CommonPageLoaderException
@@ -23,8 +17,8 @@ def valid_dir(output_path):
             logger.warning('Придется выбрать другую директорию, малыш, ты еще слишком мал для использования этой.')
             raise CommonPageLoaderException
         return output_path
-    except (FileNotFoundError, FileExistsError):
-        logger.warning('Что-то не так с выбранной директорией, давай другую!')
+    except (FileNotFoundError, FileExistsError) as e:
+        logger.warning(f'Что-то не так с выбранной директорией, давай другую: {e}')
         raise CommonPageLoaderException
 
 

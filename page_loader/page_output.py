@@ -1,17 +1,12 @@
-import requests
 from .for_http import request_http
 from .work_with_files import true_name, make_path, writing
 from .aux.logs_config import mistake_logger
 from .aux.custom_exceptions import CommonPageLoaderException, CommonRequestsError
+from page_loader.resources_output import download_resources, get_resources
+from page_loader.work_with_files import prepare_dir, valid_dir
 
 
 logger = mistake_logger(__name__)
-
-# fixt = '/home/ulitka/python-project-lvl3/page_loader/tests/fixtures/before1.html'
-# url = 'https://ru.hexlet.io/courses'
-# home_path = "/home/ulitka/python-project-lvl3/page_loader"
-# #print(get_resources(fixt, url, home_path), sep='\n')
-# print(get_resources(fixt, url, home_path))
 
 
 def download_page(url,
@@ -23,11 +18,29 @@ def download_page(url,
         new_html = make_path(output_path, true_name(url))
         content = get_content(url)
         writing(new_html, content)
-        logger.debug('all ok')
         return new_html
     except CommonRequestsError as e:
         logger.warning(e.error)
-        raise CommonPageLoaderException
+        raise
+
+
+def download(url, output_path):
+    try:
+        output_path = valid_dir(output_path)
+        page_path = download_page(url, output_path)
+        logger.debug('Cтраница скачалась, переходим к ресурсам')
+        new_dir = prepare_dir(url, output_path)
+        logger.debug(f'Директория для ресурсов {new_dir}')
+        resources = get_resources(page_path, url, new_dir)
+        download_resources(resources, output_path)
+        return page_path
+    except CommonPageLoaderException as e:
+        raise
+    except FileExistsError as e:
+        raise
+    # можно сделать счетчик, сколько ресурсов загружено, сколько ошибочно
+
+
 
     # try:
     #     r = requests.get(url)

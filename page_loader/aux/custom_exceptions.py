@@ -8,6 +8,3 @@ class CommonRequestsError(CommonPageLoaderException):
         self.url = url
         self.error = error
 
-
-class NoResourcesException(CommonPageLoaderException):
-    pass

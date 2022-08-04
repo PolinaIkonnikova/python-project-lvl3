@@ -24,13 +24,6 @@ FORMAT1 = '%(asctime)s - %(levelname)s - %(message)s'
 FORMAT2 = '%(message)s'
 
 
-def get_stdout_handler():
-    stream_handler = logging.StreamHandler(stream=sys.stdout)
-    stream_handler.setLevel(logging.INFO)
-    stream_handler.setFormatter(logging.Formatter(FORMAT2))
-    return stream_handler
-
-
 def get_file_handler():
     file_handler = logging.FileHandler('/home/ulitka/python-project-lvl3/page_loader/aux/logs.log', 'w')
     file_handler.setLevel(logging.DEBUG)
@@ -51,12 +44,3 @@ def mistake_logger(name):
     logger.addHandler(get_stderr_handler())
     logger.addHandler(get_file_handler())
     return logger
-
-
-def success_logger(name):
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(get_stdout_handler())
-    logger.addHandler(get_file_handler())
-    return logger
-

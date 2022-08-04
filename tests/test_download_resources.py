@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup as bs
 from page_loader.resources_output import get_resources, download_resources
 from tests.fixtures.stubs_and_fixt import fake_writing, FAKE_LINKS, get_abs_path_fixture
 from page_loader.work_with_files import prepare_dir
-from page_loader.aux.custom_exceptions import NoResourcesException
 
 
 url = FAKE_LINKS['normal_url']
@@ -46,8 +45,7 @@ def test_download_resources1():
 
 def test_download_resources2():
     res_dict = []
-    with pytest.raises(NoResourcesException):
-        download_resources(res_dict, 'some_dir', writing_res=fake_writing)
+    assert download_resources(res_dict, 'some_dir') is None
 
 
 def test_get_resources1():
