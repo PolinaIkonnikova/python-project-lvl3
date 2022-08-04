@@ -2,7 +2,7 @@ import logging
 import sys
 
 
-log_path = 'page_loader/aux/logs.log'
+log_path = 'aux/logs.log'
 FORMAT1 = '%(asctime)s - %(levelname)s - %(message)s'
 FORMAT2 = '%(message)s'
 DATE_FORMAT = '%d-%b-%y %H:%M:%S'
