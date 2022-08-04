@@ -5,7 +5,7 @@ import sys
 FORMAT1 = '%(asctime)s - %(levelname)s - %(message)s'
 FORMAT2 = '%(message)s'
 DATE_FORMAT = '%d-%b-%y %H:%M:%S'
-LOG_PATH = 'project/code/page_loader/aux/logs.log'
+LOG_PATH = 'code/page_loader/aux/logs.log'
 
 
 def get_file_handler():
