@@ -1,53 +1,18 @@
-05-Aug-22 00:25:44 - DEBUG - Cтраница скачалась, переходим к ресурсам
-05-Aug-22 00:25:44 - DEBUG - Директория 05-Aug-22 00:25:45 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_002.jpg отправлены на запись
-05-Aug-22 00:25:45 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_011.jpg отправлены на запись
-05-Aug-22 00:25:46 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_012.jpg отправлены на запись
-05-Aug-22 00:25:46 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_014.jpg отправлены на запись
-05-Aug-22 00:25:47 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_017.jpg отправлены на запись
-05-Aug-22 00:25:48 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_021.jpg отправлены на запись
-05-Aug-22 00:25:49 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_022.jpg отправлены на запись
-05-Aug-22 00:25:49 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_031.jpg отправлены на запись
-05-Aug-22 00:25:51 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_041.jpg отправлены на запись
-05-Aug-22 00:25:51 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_048.jpg отправлены на запись
-05-Aug-22 00:25:52 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_051.jpg отправлены на запись
-05-Aug-22 00:25:52 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_081.jpg отправлены на запись
-05-Aug-22 00:25:53 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_085.jpg отправлены на запись
-05-Aug-22 00:25:53 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_086.jpg отправлены на запись
-05-Aug-22 00:25:54 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_087.jpg отправлены на запись
-05-Aug-22 00:25:54 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_102.jpg отправлены на запись
-05-Aug-22 00:25:55 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_104.jpg отправлены на запись
-05-Aug-22 00:25:55 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_105.jpg отправлены на запись
-05-Aug-22 00:25:56 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_106.jpg отправлены на запись
-05-Aug-22 00:25:56 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_107.jpg отправлены на запись
-05-Aug-22 00:25:57 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_108.jpg отправлены на запись
-05-Aug-22 00:25:58 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_109.jpg отправлены на запись
-05-Aug-22 00:25:59 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_110.jpg отправлены на запись
-05-Aug-22 00:25:59 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_114.jpg отправлены на запись
-05-Aug-22 00:25:59 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_115.jpg отправлены на запись
-05-Aug-22 00:26:00 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_117.jpg отправлены на запись
-05-Aug-22 00:26:01 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_118.jpg отправлены на запись
-05-Aug-22 00:26:02 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_124.jpg отправлены на запись
-05-Aug-22 00:26:03 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_125.jpg отправлены на запись
-05-Aug-22 00:26:03 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_126.jpg отправлены на запись
-05-Aug-22 00:26:03 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_127.jpg отправлены на запись
-05-Aug-22 00:26:04 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_130.jpg отправлены на запись
-05-Aug-22 00:26:05 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_131.jpg отправлены на запись
-05-Aug-22 00:26:06 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_132.jpg отправлены на запись
-05-Aug-22 00:26:06 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_140.jpg отправлены на запись
-05-Aug-22 00:26:06 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_147.jpg отправлены на запись
-05-Aug-22 00:26:07 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_149.jpg отправлены на запись
-05-Aug-22 00:26:07 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_152.jpg отправлены на запись
-05-Aug-22 00:26:07 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_156.jpg отправлены на запись
-05-Aug-22 00:26:08 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_158.jpg отправлены на запись
-05-Aug-22 00:26:09 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_159.jpg отправлены на запись
-05-Aug-22 00:26:10 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_160.jpg отправлены на запись
-05-Aug-22 00:26:10 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_161.jpg отправлены на запись
-05-Aug-22 00:26:11 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_164.jpg отправлены на запись
-05-Aug-22 00:26:12 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_165.jpg отправлены на запись
-05-Aug-22 00:26:12 - DEBUG - Данные с https://kirill-sklyarenko.ru/lenta/python-patches-mocks-anti-patterns отправлены на запись
-05-Aug-22 00:26:13 - DEBUG - Данные с https://kirill-sklyarenko.ru/lenta/python-patches-mocks-anti-patterns отправлены на запись
-05-Aug-22 00:26:13 - DEBUG - Данные с https://kirill-sklyarenko.ru/images/favicon.png отправлены на запись
-05-Aug-22 00:26:13 - DEBUG - Данные с https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/css/389a0c775a84d1f039627ca72fb3d198.css отправлены на запись
-05-Aug-22 00:26:13 - DEBUG - Данные с https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/css/f8a1425bab88cd8dd33cd5754cda5947.css отправлены на запись
-05-Aug-22 00:26:14 - DEBUG - Данные с https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/js/bb7e317865b7a0ab5d1d610e91842766.js отправлены на запись
-05-Aug-22 00:26:14 - DEBUG - Данные с https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/js/326427870cd4c9056b9f7acdca0ebce1.js отправлены на запись
+05-Aug-22 01:55:38 - WARNING - На странице нет ресурсов, доступных для скачивания.
+�чан0505-Aug-22 01:55:38 - WARNING - Неверый адрес страницы /ololo, ресурс не скача05-A05-Aug-22 01:55:38 - WARNING - Неверый адрес страницы ru-hexlet-io-courses.html, ресурс не скач05-Aug05-Aug-22 01:55:38 - WARNING - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
+05-Aug-22 01:55:38 - DEBUG - Cтраница скачалась, переходим к ресурсам
+05-Aug-22 01:55:38 - DEBUG - Директори05-Aug-22 01:55:38 - WARNING - Кажется, выбранная директория не существует или не директория вовсе!
+05-Aug-22 01:55:38 - WARNING - Папка для ресурсов уже существует, и возможно страница уже скачана. Стоит перепроверить!
+н.
+05-Aug-22 01:55:38 - WARNING - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eff605c7fd0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+05-Aug-22 01:55:38 - DEBUG - Cтраница скачалась, переходим к ресурсам
+508b0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+05-Aug-22 01:55:38 - DEBUG - Ресурс htps://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
+05-Aug-22 01:55:38 - DEBUG - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
+05-Aug-22 01:55:38 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись
+05-Aug-22 01:55:38 - DEBUG - Ресурс https://ru.hexlet.io/assets/professions/nodejs.png не скачан, код ответа сервера - 404.
+05-Aug-22 01:55:38 - DEBUG - Ресурс https://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
+05-Aug-22 01:55:38 - DEBUG - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
+05-Aug-22 01:55:38 - DEBUG - Неверый адрес страницы /ololo, ресурс не скачан.
+05-Aug-22 01:55:38 - DEBUG - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7eff605c7fd0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+05-Aug-22 01:55:38 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись

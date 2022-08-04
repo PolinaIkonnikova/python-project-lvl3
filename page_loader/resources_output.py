@@ -26,8 +26,8 @@ def new_resource_path(source, dir_path):
 
 
 def resource_filter(atr, parent_url, resources):
-    first =  [res for res in resources if is_parent_netloc(res[atr],
-                                                           parent_url)]
+    first = [res for res in resources if is_parent_netloc(res[atr],
+                                                          parent_url)]
     second = [res for res in first if is_path(res[atr])]
     return second
 
@@ -76,12 +76,11 @@ def download_resources(resources_dict, output_path, writing_res=loading_res):
     if not resources_dict:
         logger.warning('На странице нет ресурсов, доступных для скачивания.')
         return
-    else:
-        res_count = len(resources_dict)
-        with download_progress(res_count) as p:
-            for res in resources_dict:
-                try:
-                    writing_res(res, output_path)
-                except CommonRequestsError:
-                    continue
-                p.next()
+    res_count = len(resources_dict)
+    with download_progress(res_count) as p:
+        for res in resources_dict:
+            try:
+                writing_res(res, output_path)
+            except CommonRequestsError:
+                continue
+            p.next()

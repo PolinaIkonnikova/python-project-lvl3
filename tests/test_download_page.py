@@ -2,7 +2,9 @@ import os
 import tempfile
 import pytest
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
-from tests.fixtures.stubs_and_fixt import fake_data, FAKE_LINKS, get_abs_path_fixture
+from tests.fixtures.stubs_and_fixt import fake_data
+from tests.fixtures.stubs_and_fixt import FAKE_LINKS
+from tests.fixtures.stubs_and_fixt import get_abs_path_fixture
 from page_loader.page_output import download_page
 from page_loader.work_with_files import true_name, valid_dir, writing
 
@@ -17,8 +19,10 @@ fixt3 = get_abs_path_fixture('meow.jpeg')
 
 @pytest.mark.parametrize('file_name, output_name',
                          [(url, html_name_hexlet),
-                          ('/assets/professions/nodejs.png', 'assets-professions-nodejs.png'),
-                          ('/ru.hexlet.io/courses.html', 'ru-hexlet-io-courses.html')])
+                          ('/assets/professions/nodejs.png',
+                           'assets-professions-nodejs.png'),
+                          ('/ru.hexlet.io/courses.html',
+                           'ru-hexlet-io-courses.html')])
 def test_true_naming(file_name, output_name):
     assert true_name(file_name) == output_name
 
@@ -27,7 +31,8 @@ def test_true_dir_naming():
     assert true_name(url, is_dir=True) == dir_name
 
 
-@pytest.mark.parametrize('path', [FAKE_LINKS['invalid_url3'], 'some_dir.png', url])
+@pytest.mark.parametrize('path', [FAKE_LINKS['invalid_url3'],
+                                  'some_dir.png', url])
 def test_valid_dir(path):
     with pytest.raises(CommonPageLoaderException):
         valid_dir(path)
@@ -57,16 +62,16 @@ def test_writing_bytes():
 
 def test_download_page1():
     with tempfile.TemporaryDirectory() as d:
-        path_file = os.path.join(d,  html_name_hexlet)
+        path_file = os.path.join(d, html_name_hexlet)
         new_html = download_page(url, d, get_content=fake_data)
         assert os.path.exists(new_html)
         assert new_html == path_file
 
 
-@pytest.mark.parametrize('wrong_url', [FAKE_LINKS['invalid_url1'], FAKE_LINKS['invalid_url3'],
+@pytest.mark.parametrize('wrong_url', [FAKE_LINKS['invalid_url1'],
+                                       FAKE_LINKS['invalid_url3'],
                                        html_name_hexlet])
 def test_download_page2(wrong_url):
     with tempfile.TemporaryDirectory() as d:
         with pytest.raises(CommonPageLoaderException):
             download_page(wrong_url, d)
-            #assert e.value

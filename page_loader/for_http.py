@@ -11,7 +11,8 @@ def request_http(url, bytes=False):
         r = requests.get(url)
         status_code = r.status_code
         if status_code != 200:
-            logger.debug(f'Ресурс {url} не скачан, код ответа сервера - {status_code}.')
+            logger.debug(f'Ресурс {url} не скачан, '
+                         f'код ответа сервера - {status_code}.')
             raise CommonRequestsError(url=url, code=status_code)
         if bytes is True:
             method = r.content
@@ -19,13 +20,17 @@ def request_http(url, bytes=False):
             method = r.text
         logger.debug(f'Данные с {url} отправлены на запись')
         return method
-    except (requests.exceptions.InvalidURL, requests.exceptions.InvalidSchema,
-            requests.exceptions.MissingSchema) as e:
-        logger.debug(f'С {url} произошла неприятность : {e}')
-        raise CommonRequestsError(url=url, error=f'Неверый адрес страницы {url}, ресурс не скачан.')
+    except (requests.exceptions.InvalidURL,
+            requests.exceptions.InvalidSchema,
+            requests.exceptions.MissingSchema):
+        message = f'Неверый адрес страницы {url}, ресурс не скачан.'
+        logger.debug(message)
+        raise CommonRequestsError(url=url,
+                                  error=message)
     except requests.exceptions.ConnectionError as e:
-        logger.debug(f'С {url} произошла неприятность : {e}')
-        raise CommonRequestsError(url=url, error=f'Неверый адрес страницы {url}, ресурс не скачан.')
+        message = f'С {url} произошла неприятность : {e}'
+        logger.debug(message)
+        raise CommonRequestsError(url=url, error=message)
 
 
 def is_valid_url(url):

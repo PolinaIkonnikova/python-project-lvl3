@@ -7,4 +7,3 @@ class CommonRequestsError(CommonPageLoaderException):
         self.code = code
         self.url = url
         self.error = error
-

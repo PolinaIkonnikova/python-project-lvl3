@@ -7,6 +7,7 @@ def create_parser():
     parser.add_argument('url', type=str, default="no_page",
                         help='url for downloading')
     parser.add_argument('-o', '--output', type=str, default=os.getcwd(),
-                        help='A path for new page (default: your current directory)')
+                        help='A path for new page '
+                             '(default: your current directory)')
     args = parser.parse_args()
     return args.url, args.output

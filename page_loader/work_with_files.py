@@ -11,14 +11,17 @@ logger = mistake_logger(__name__)
 def valid_dir(output_path):
     try:
         if not os.path.isdir(output_path):
-            logger.warning('Кажется, выбранная директория не существует или не директория вовсе!')
+            logger.warning('Кажется, выбранная директория'
+                           ' не существует или не директория вовсе!')
             raise CommonPageLoaderException
         if not os.access(output_path, os.R_OK & os.W_OK & os.X_OK):
-            logger.warning('Придется выбрать другую директорию, малыш, ты еще слишком мал для использования этой.')
+            logger.warning('Придется выбрать другую директорию, '
+                           'малыш, ты еще слишком мал для использования этой.')
             raise CommonPageLoaderException
         return output_path
     except (FileNotFoundError, FileExistsError) as e:
-        logger.warning(f'Что-то не так с выбранной директорией, давай другую: {e}')
+        logger.warning('Что-то не так с выбранной директорией, '
+                       f'выбирай другую: {e}')
         raise CommonPageLoaderException
 
 
@@ -41,8 +44,9 @@ def prepare_dir(url, output_path):
     try:
         os.mkdir(new_dir)
         return new_dir
-    except FileExistsError as e:
-        logger.warning('Папка для ресурсов уже существует, и возможно страница уже скачана. Стоит перепроверить!')
+    except FileExistsError:
+        logger.warning('Папка для ресурсов уже существует, '
+                       'и возможно страница уже скачана. Стоит перепроверить!')
         raise
 
 

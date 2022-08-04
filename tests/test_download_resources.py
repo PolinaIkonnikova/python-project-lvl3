@@ -4,7 +4,9 @@ import pytest
 import shutil
 from bs4 import BeautifulSoup as bs
 from page_loader.resources_output import get_resources, download_resources
-from tests.fixtures.stubs_and_fixt import fake_writing, FAKE_LINKS, get_abs_path_fixture
+from tests.fixtures.stubs_and_fixt import fake_writing
+from tests.fixtures.stubs_and_fixt import FAKE_LINKS
+from tests.fixtures.stubs_and_fixt import get_abs_path_fixture
 from page_loader.work_with_files import prepare_dir
 
 
@@ -30,9 +32,10 @@ def test_prepare_dir2():
 
 
 def test_download_resources1():
+    res_path = "ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js"
     res_dict1 = [{'tag': 'script',
                   'source': "https://ru.hexlet.io/packs/js/runtime.js",
-                  'res_path': "ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js"},
+                  'res_path': res_path},
                  {'source': "https://ru.hexlet.io/meow.png",
                   'tag': 'img',
                   'res_path': "meow.png"}]
@@ -40,7 +43,7 @@ def test_download_resources1():
         os.mkdir(os.path.join(temp, dir_name))
         download_resources(res_dict1, temp, writing_res=fake_writing)
         assert os.path.exists(os.path.join(temp, "meow.png"))
-        assert os.path.exists(os.path.join(temp, "ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js"))
+        assert os.path.exists(os.path.join(temp, res_path))
 
 
 def test_download_resources2():
@@ -49,7 +52,8 @@ def test_download_resources2():
 
 
 def test_get_resources1():
-    new_png_path = "ru-hexlet-io-courses_files/ru-hexlet-io-assets-professions-nodejs.png"
+    new_png_path = "ru-hexlet-io-courses_files/" \
+                   "ru-hexlet-io-assets-professions-nodejs.png"
     new_png_source = 'https://ru.hexlet.io/assets/professions/nodejs.png'
     with tempfile.TemporaryDirectory() as temp:
         temp_fixt = shutil.copyfile(fixt1, os.path.join(temp, 'test.html'))
