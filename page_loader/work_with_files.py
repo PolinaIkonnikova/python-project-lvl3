@@ -55,5 +55,10 @@ def writing(file, data, bytes=False):
         tag = 'wb'
     else:
         tag = 'w'
-    with open(file, tag) as f:
-        f.write(data)
+    try:
+        with open(file, tag) as f:
+            f.write(data)
+    except PermissionError:
+        logger.warning('Ошибка прав доступа, придется выбрать'
+                       'другую директорию!')
+        raise CommonPageLoaderException
