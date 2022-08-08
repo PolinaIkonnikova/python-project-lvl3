@@ -63,17 +63,19 @@ def test_get_resources1():
     fixt = get_path_fixture('one_png.html')
     with tempfile.TemporaryDirectory() as t:
         temp_fixt = shutil.copyfile(fixt, os.path.join(t, 'test.html'))
-        resources = get_resources(temp_fixt, URL, DIR_NAME)
+        source_dir = os.path.join(t, DIR_NAME)
+        source_path = os.path.join(t, NEW_PNG_PATH)
+        resources = get_resources(temp_fixt, URL, source_dir)
         res = resources[0]
 
         assert res['tag'] == 'img'
         assert res['source'] == NEW_PNG_SOURCE
-        assert res['res_path'] == NEW_PNG_PATH
+        assert res['res_path'] == source_path
 
         with open(temp_fixt, 'r') as f:
             soup = bs(f.read(), features="html.parser")
             test_res = soup.find_all('img')
-            assert test_res[0]['src'] == NEW_PNG_PATH
+            assert test_res[0]['src'] == source_path
 
 
 def test_get_resources2():

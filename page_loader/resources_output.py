@@ -22,8 +22,7 @@ def is_path(url):
 
 def new_resource_path(source, dir_path):
     new_name = true_name(source)
-    new_path = make_path(dir_path, new_name)
-    return new_path
+    return make_path(dir_path, new_name)
 
 
 def resource_filter(atr, parent_url, resources):
