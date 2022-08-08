@@ -1,18 +1,18 @@
-08-Aug-22 11:10:25 - WARNING - На странице нет ресурсов, доступных для скачивания.
-�чан0808-Aug-22 11:10:25 - WARNING - Неверый адрес страницы /ololo, ресурс не скача08-A08-Aug-22 11:10:25 - WARNING - Неверый адрес страницы ru-hexlet-io-courses.html, ресурс не скач08-Aug08-Aug-22 11:10:25 - WARNING - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
-08-Aug-22 11:10:25 - DEBUG - Cтраница скачалась, переходим к ресурсам
-08-Aug-22 11:10:25 - DEBUG - Директори08-Aug-22 11:10:25 - WARNING - Кажется, выбранная директория не существует или не директория вовсе!
-08-Aug-22 11:10:25 - WARNING - Папка для ресурсов уже существует, и возможно страница уже скачана. Стоит перепроверить!
+08-Aug-22 11:22:56 - WARNING - На странице нет ресурсов, доступных для скачивания.
+�чан0808-Aug-22 11:22:56 - WARNING - Неверый адрес страницы /ololo, ресурс не скача08-A08-Aug-22 11:22:56 - WARNING - Неверый адрес страницы ru-hexlet-io-courses.html, ресурс не скач08-Aug08-Aug-22 11:22:56 - WARNING - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
+08-Aug-22 11:22:56 - DEBUG - Cтраница скачалась, переходим к ресурсам
+08-Aug-22 11:22:56 - DEBUG - Директори08-Aug-22 11:22:56 - WARNING - Кажется, выбранная директория не существует или не директория вовсе!
+08-Aug-22 11:22:56 - WARNING - Папка для ресурсов уже существует, и возможно страница уже скачана. Стоит перепроверить!
 н.
-08-Aug-22 11:10:25 - WARNING - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f607990feb0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
-08-Aug-22 11:10:25 - DEBUG - Cтраница скачалась, переходим к ресурсам
-bfe50>: Failed to establish a new connection: [Errno -2] Name or service not known'))
-08-Aug-22 11:10:25 - DEBUG - Ресурс htps://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
-08-Aug-22 11:10:25 - DEBUG - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
-08-Aug-22 11:10:25 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись
-08-Aug-22 11:10:25 - DEBUG - Ресурс https://ru.hexlet.io/assets/professions/nodejs.png не скачан, код ответа сервера - 404.
-08-Aug-22 11:10:25 - DEBUG - Ресурс https://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
-08-Aug-22 11:10:25 - DEBUG - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
-08-Aug-22 11:10:25 - DEBUG - Неверый адрес страницы /ololo, ресурс не скачан.
-08-Aug-22 11:10:25 - DEBUG - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f607990feb0>: Failed to establish a new connection: [Errno -2] Name or service not known'))
-08-Aug-22 11:10:25 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись
+08-Aug-22 11:22:56 - WARNING - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f45d8008c40>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+08-Aug-22 11:22:56 - DEBUG - Cтраница скачалась, переходим к ресурсам
+93580>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+08-Aug-22 11:22:56 - DEBUG - Ресурс htps://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
+08-Aug-22 11:22:56 - DEBUG - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
+08-Aug-22 11:22:56 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись
+08-Aug-22 11:22:56 - DEBUG - Ресурс https://ru.hexlet.io/assets/professions/nodejs.png не скачан, код ответа сервера - 404.
+08-Aug-22 11:22:56 - DEBUG - Ресурс https://ru.hexlet.io/courses не скачан, код ответа сервера - 500.
+08-Aug-22 11:22:56 - DEBUG - Неверый адрес страницы htps://ru.hexlet.io/courses, ресурс не скачан.
+08-Aug-22 11:22:56 - DEBUG - Неверый адрес страницы /ololo, ресурс не скачан.
+08-Aug-22 11:22:56 - DEBUG - С http://some_domen.ru/courses произошла неприятность : HTTPConnectionPool(host='some_domen.ru', port=80): Max retries exceeded with url: /courses (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f45d8008c40>: Failed to establish a new connection: [Errno -2] Name or service not known'))
+08-Aug-22 11:22:56 - DEBUG - Данные с https://ru.hexlet.io/courses отправлены на запись

@@ -10,9 +10,9 @@ DATE_FORMAT = '%d-%b-%y %H:%M:%S'
 
 def logs_path():
     work_dir = os.getcwd().split('/')[-1]
-    if work_dir == 'tests':
+    if work_dir == 'test':
         return '../page_loader/aux/logs.log'
-    return 'page_loader/aux/logs.log'
+    return 'code/page_loader/aux/logs.log'
 
 
 def get_file_handler():
