@@ -61,15 +61,15 @@ def get_resources(html_page, parent_url, dir_name):
 
 
 def loading_res(res_description, output_path):
-    tag = res_description['tag']
+    # tag = res_description['tag']
     source = res_description['source']
     res_path = make_path(output_path, res_description['res_path'])
-    if tag == 'img' or tag == 'script':
-        data = request_http(source, bytes=True)
-        writing(res_path, data, bytes=True)
-    elif tag == 'link':
-        data = request_http(source)
-        writing(res_path, data)
+    # if tag == 'img' or tag == 'script':
+    data = request_http(source, bytes=True)
+    writing(res_path, data, bytes=True)
+    # elif tag == 'link':
+    #     data = request_http(source)
+    #     writing(res_path, data)
 
 
 def download_resources(resources_dict, output_path, writing_res=loading_res):
