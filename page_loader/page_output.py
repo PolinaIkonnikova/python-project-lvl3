@@ -32,24 +32,9 @@ def download(url, output_path):
         new_dir = prepare_dir(url, output_path)
         logger.debug(f'Директория для ресурсов {new_dir}')
         resources = get_resources(page_path, url, new_dir)
-        download_resources(resources, output_path)
+        download_resources(resources)
         return page_path
     except CommonPageLoaderException:
         raise
     except FileExistsError:
         raise
-    # try:
-    #     r = requests.get(url)
-    #     return r.status_code
-    #
-    #     #logger.warning(f'Something went wrong, a response code
-    #     is {r.status_code}')
-    # except (requests.exceptions.InvalidURL,
-    # requests.exceptions.InvalidSchema):
-    #     raise requests.RequestException(f'The url {url} is not valid')
-    # except requests.exceptions.ConnectionError:
-    #     code = requests.get(url).status_code
-    #     raise requests.RequestException(f'Problems'
-    #     'with connecting for {url}. Status code is {code}')
-    # except requests.RequestException:
-    #     logger.error('Something went wrong for downloading')

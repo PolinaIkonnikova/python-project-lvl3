@@ -3,47 +3,55 @@ import tempfile
 import pytest
 import shutil
 from bs4 import BeautifulSoup as bs
-from page_loader.resources_output import get_resources, download_resources
-from tests.fixtures.stubs_and_fixt import fake_writing
-from tests.fixtures.stubs_and_fixt import FAKE_LINKS
-from tests.fixtures.stubs_and_fixt import get_abs_path_fixture
+from page_loader.resources_output import get_resources,\
+    download_resources
+from tests.fixtures.for_fixtures import FAKE_LINKS,\
+    get_path_fixture
 from page_loader.work_with_files import prepare_dir
 
 
-url = FAKE_LINKS['normal_url']
-dir_name = FAKE_LINKS['dir_for_resources']
-html_name_hexlet = FAKE_LINKS['new_html_name']
-fixt1 = get_abs_path_fixture('one_png.html')
-fixt2 = get_abs_path_fixture('before1.html')
+URL = FAKE_LINKS['normal_url']
+DIR_NAME = FAKE_LINKS['dir_for_resources']
+HTML_NAME_HEXLET = FAKE_LINKS['new_html_name']
+NEW_PNG_PATH = "ru-hexlet-io-courses_files/" \
+               "ru-hexlet-io-assets-professions-nodejs.png"
+NEW_PNG_SOURCE = 'https://ru.hexlet.io/assets/professions/nodejs.png'
 
 
 def test_prepare_dir1():
-    with tempfile.TemporaryDirectory() as d:
-        dir_pass = prepare_dir(url, d)
-        assert os.path.exists(os.path.join(d, dir_name))
-        assert dir_pass == os.path.join(d, dir_name)
+    with tempfile.TemporaryDirectory() as t:
+        dir_pass = prepare_dir(URL, t)
+        assert os.path.exists(os.path.join(t, DIR_NAME))
+        assert dir_pass == os.path.join(t, DIR_NAME)
 
 
 def test_prepare_dir2():
     with tempfile.TemporaryDirectory() as d:
         with pytest.raises(FileExistsError):
-            os.mkdir(os.path.join(d, dir_name))
-            prepare_dir(url, d)
+            os.mkdir(os.path.join(d, DIR_NAME))
+            prepare_dir(URL, d)
+
+
+def fake_writing(res):
+    with open(res['res_path'], 'x'):
+        pass
 
 
 def test_download_resources1():
-    res_path = "ru-hexlet-io-courses_files/ru-hexlet-io-packs-js-runtime.js"
-    res_dict1 = [{'tag': 'script',
-                  'source': "https://ru.hexlet.io/packs/js/runtime.js",
-                  'res_path': res_path},
-                 {'source': "https://ru.hexlet.io/meow.png",
-                  'tag': 'img',
-                  'res_path': "meow.png"}]
-    with tempfile.TemporaryDirectory() as temp:
-        os.mkdir(os.path.join(temp, dir_name))
-        download_resources(res_dict1, temp, writing_res=fake_writing)
-        assert os.path.exists(os.path.join(temp, "meow.png"))
-        assert os.path.exists(os.path.join(temp, res_path))
+    with tempfile.TemporaryDirectory() as t:
+        res_path1 = os.path.join(t, "ru-hexlet-io-courses_files/"
+                                    "ru-hexlet-io-packs-js-runtime.js")
+        res_path2 = os.path.join(t, "meow.png")
+        res_dict1 = [{'tag': 'script',
+                      'source': "https://ru.hexlet.io/packs/js/runtime.js",
+                      'res_path': res_path1},
+                     {'source': "https://ru.hexlet.io/meow.png",
+                      'tag': 'img',
+                      'res_path': res_path2}]
+        os.mkdir(os.path.join(t, DIR_NAME))
+        download_resources(res_dict1, writing_res=fake_writing)
+        assert os.path.exists(res_path1)
+        assert os.path.exists(res_path2)
 
 
 def test_download_resources2():
@@ -52,26 +60,25 @@ def test_download_resources2():
 
 
 def test_get_resources1():
-    new_png_path = "ru-hexlet-io-courses_files/" \
-                   "ru-hexlet-io-assets-professions-nodejs.png"
-    new_png_source = 'https://ru.hexlet.io/assets/professions/nodejs.png'
-    with tempfile.TemporaryDirectory() as temp:
-        temp_fixt = shutil.copyfile(fixt1, os.path.join(temp, 'test.html'))
-        resources = get_resources(temp_fixt, url, dir_name)
+    fixt = get_path_fixture('one_png.html')
+    with tempfile.TemporaryDirectory() as t:
+        temp_fixt = shutil.copyfile(fixt, os.path.join(t, 'test.html'))
+        resources = get_resources(temp_fixt, URL, DIR_NAME)
         res = resources[0]
 
         assert res['tag'] == 'img'
-        assert res['source'] == new_png_source
-        assert res['res_path'] == new_png_path
+        assert res['source'] == NEW_PNG_SOURCE
+        assert res['res_path'] == NEW_PNG_PATH
 
         with open(temp_fixt, 'r') as f:
             soup = bs(f.read(), features="html.parser")
             test_res = soup.find_all('img')
-            assert test_res[0]['src'] == new_png_path
+            assert test_res[0]['src'] == NEW_PNG_PATH
 
 
 def test_get_resources2():
-    with tempfile.TemporaryDirectory() as temp:
-        temp_fixt = shutil.copyfile(fixt2, os.path.join(temp, 'test.html'))
-        resources = get_resources(temp_fixt, url, temp)
+    fixt = get_path_fixture('before.html')
+    with tempfile.TemporaryDirectory() as t:
+        temp_fixt = shutil.copyfile(fixt, os.path.join(t, 'test.html'))
+        resources = get_resources(temp_fixt, URL, t)
         assert len(resources) == 4

@@ -2,9 +2,7 @@ import os
 import tempfile
 import pytest
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
-from tests.fixtures.stubs_and_fixt import fake_data
-from tests.fixtures.stubs_and_fixt import FAKE_LINKS
-from tests.fixtures.stubs_and_fixt import get_abs_path_fixture
+from tests.fixtures.for_fixtures import get_path_fixture, FAKE_LINKS
 from page_loader.page_output import download_page
 from page_loader.work_with_files import true_name, valid_dir, writing
 
@@ -12,9 +10,6 @@ from page_loader.work_with_files import true_name, valid_dir, writing
 url = FAKE_LINKS['normal_url']
 dir_name = FAKE_LINKS['dir_for_resources']
 html_name_hexlet = FAKE_LINKS['new_html_name']
-fixt1 = get_abs_path_fixture('just_file.txt')
-fixt2 = get_abs_path_fixture('empty.html')
-fixt3 = get_abs_path_fixture('meow.jpeg')
 
 
 @pytest.mark.parametrize('file_name, output_name',
@@ -38,9 +33,8 @@ def test_valid_dir(path):
         valid_dir(path)
 
 
-@pytest.mark.parametrize('fixt', [fixt1, fixt2])
-def test_writing_text(fixt):
-    data = fake_data(fixt)
+def test_writing_text():
+    data = 'hello'
     with tempfile.TemporaryDirectory() as d:
         path_file = os.path.join(d, 'new_file.html')
         writing(path_file, data)
@@ -49,8 +43,9 @@ def test_writing_text(fixt):
 
 
 def test_writing_bytes():
-    pic_size = os.path.getsize(fixt3)
-    with open(fixt3, 'rb') as f:
+    fixt = get_path_fixture('meow.jpeg')
+    pic_size = os.path.getsize(fixt)
+    with open(fixt, 'rb') as f:
         data = f.read()
 
     with tempfile.TemporaryDirectory() as d:
@@ -58,6 +53,10 @@ def test_writing_bytes():
         writing(path_file, data, bytes=True)
         pic_size2 = os.path.getsize(path_file)
         assert pic_size == pic_size2
+
+
+def fake_data(*args):
+    return 'hello'
 
 
 def test_download_page1():
