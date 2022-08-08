@@ -1,4 +1,3 @@
-import os
 from page_loader.for_http import valid_link, request_http
 from urllib.parse import urlparse
 from bs4 import BeautifulSoup as bs
