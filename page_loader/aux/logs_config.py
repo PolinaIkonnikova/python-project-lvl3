@@ -11,15 +11,9 @@ DATE_FORMAT = '%d-%b-%y %H:%M:%S'
 def logs_path():
     work_dir = os.getcwd().split('/')[-1]
     if work_dir == 'tests':
-<<<<<<< HEAD
         return '../code/page_loader/aux/logs.log'
     return 'code/page_loader/aux/logs.log'
     # '/home/runner/work/python-project-lvl3/code/page_loader/aux/logs.log'
-=======
-        return '../page_loader/aux/logs.log'
-    return 'code/page_loader/aux/logs.log'
->>>>>>> 505eef2c55485741352114d00006917bb04ddc3b
-    # return 'page_loader/aux/logs.log'
 
 
 def get_file_handler():
