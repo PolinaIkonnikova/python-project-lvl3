@@ -32,7 +32,7 @@ def resource_filter(atr, parent_url, resources):
     return second
 
 
-def get_resources(html_page, parent_url, dir_path):
+def get_resources(html_page, parent_url, dir_name):
 
     resource_tag = {'img': 'src', 'link': 'href', 'script': 'src'}
     for_downloading = []
@@ -47,7 +47,7 @@ def get_resources(html_page, parent_url, dir_path):
 
             for res in resource_list:
                 source = valid_link(res[atr], parent_url)
-                res_path = new_resource_path(source, dir_path)
+                res_path = new_resource_path(source, dir_name)
                 res_description = dict([('tag', tag),
                                         ('source', source),
                                         ('res_path', res_path)])
@@ -60,10 +60,10 @@ def get_resources(html_page, parent_url, dir_path):
     return for_downloading
 
 
-def loading_res(res_description):
+def loading_res(res_description, output_path):
     tag = res_description['tag']
     source = res_description['source']
-    res_path = res_description['res_path']
+    res_path = make_path(output_path, res_description['res_path'])
     if tag == 'img':
         data = request_http(source, bytes=True)
         writing(res_path, data, bytes=True)
@@ -72,7 +72,7 @@ def loading_res(res_description):
         writing(res_path, data)
 
 
-def download_resources(resources_dict, writing_res=loading_res):
+def download_resources(resources_dict, output_path, writing_res=loading_res):
     if not resources_dict:
         logger.warning('На странице нет ресурсов, доступных для скачивания.')
         return
@@ -80,7 +80,7 @@ def download_resources(resources_dict, writing_res=loading_res):
     with download_progress(res_count) as p:
         for res in resources_dict:
             try:
-                writing_res(res)
+                writing_res(res, output_path)
             except CommonRequestsError:
                 continue
             p.next()

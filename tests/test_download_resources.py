@@ -20,9 +20,9 @@ NEW_PNG_SOURCE = 'https://ru.hexlet.io/assets/professions/nodejs.png'
 
 def test_prepare_dir1():
     with tempfile.TemporaryDirectory() as t:
-        dir_pass = prepare_dir(URL, t)
-        assert os.path.exists(os.path.join(t, DIR_NAME))
-        assert dir_pass == os.path.join(t, DIR_NAME)
+        dir_name, dir_path = prepare_dir(URL, t)
+        assert os.path.exists(dir_path)
+        assert dir_name == DIR_NAME
 
 
 def test_prepare_dir2():
@@ -32,8 +32,9 @@ def test_prepare_dir2():
             prepare_dir(URL, d)
 
 
-def fake_writing(res):
-    with open(res['res_path'], 'x'):
+def fake_writing(res, output_path):
+    path = os.path.join(output_path, res['res_path'])
+    with open(path, 'x'):
         pass
 
 
@@ -49,7 +50,7 @@ def test_download_resources1():
                       'tag': 'img',
                       'res_path': res_path2}]
         os.mkdir(os.path.join(t, DIR_NAME))
-        download_resources(res_dict1, writing_res=fake_writing)
+        download_resources(res_dict1, t, writing_res=fake_writing)
         assert os.path.exists(res_path1)
         assert os.path.exists(res_path2)
 
@@ -63,19 +64,16 @@ def test_get_resources1():
     fixt = get_path_fixture('one_png.html')
     with tempfile.TemporaryDirectory() as t:
         temp_fixt = shutil.copyfile(fixt, os.path.join(t, 'test.html'))
-        source_dir = os.path.join(t, DIR_NAME)
-        source_path = os.path.join(t, NEW_PNG_PATH)
-        resources = get_resources(temp_fixt, URL, source_dir)
+        resources = get_resources(temp_fixt, URL, DIR_NAME)
         res = resources[0]
-
         assert res['tag'] == 'img'
         assert res['source'] == NEW_PNG_SOURCE
-        assert res['res_path'] == source_path
+        assert res['res_path'] == NEW_PNG_PATH
 
         with open(temp_fixt, 'r') as f:
             soup = bs(f.read(), features="html.parser")
             test_res = soup.find_all('img')
-            assert test_res[0]['src'] == source_path
+            assert test_res[0]['src'] == NEW_PNG_PATH
 
 
 def test_get_resources2():

@@ -40,10 +40,11 @@ def true_name(url, is_dir=False):
 
 
 def prepare_dir(url, output_path):
-    new_dir = make_path(output_path, true_name(url, is_dir=True))
+    dir_name = true_name(url, is_dir=True)
+    dir_path = make_path(output_path, true_name(url, is_dir=True))
     try:
-        os.mkdir(new_dir)
-        return new_dir
+        os.mkdir(dir_path)
+        return dir_name, dir_path
     except FileExistsError:
         logger.warning('Папка для ресурсов уже существует, '
                        'и возможно страница уже скачана. Стоит перепроверить!')

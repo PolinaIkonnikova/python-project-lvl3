@@ -29,10 +29,10 @@ def download(url, output_path):
         output_path = valid_dir(output_path)
         page_path = download_page(url, output_path)
         logger.debug('Cтраница скачалась, переходим к ресурсам')
-        new_dir = prepare_dir(url, output_path)
-        logger.debug(f'Директория для ресурсов {new_dir}')
-        resources = get_resources(page_path, url, new_dir)
-        download_resources(resources)
+        dir_name, dir_path = prepare_dir(url, output_path)
+        logger.debug(f'Директория для ресурсов {dir_path}')
+        resources = get_resources(page_path, url, dir_name)
+        download_resources(resources, output_path)
         return page_path
     except CommonPageLoaderException:
         raise
