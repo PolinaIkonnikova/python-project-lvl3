@@ -12,7 +12,7 @@ def logs_path():
     work_dir = os.getcwd().split('/')[-1]
     if work_dir == 'tests':
         return '../page_loader/aux/logs.log'
-    return 'python-project-lvl3/code/page_loader/aux/logs.log'
+    return 'code/page_loader/aux/logs.log'
     # return 'page_loader/aux/logs.log'
 
 
