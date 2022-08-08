@@ -64,10 +64,10 @@ def loading_res(res_description, output_path):
     tag = res_description['tag']
     source = res_description['source']
     res_path = make_path(output_path, res_description['res_path'])
-    if tag == 'img':
+    if tag == 'img' or tag == 'script':
         data = request_http(source, bytes=True)
         writing(res_path, data, bytes=True)
-    elif tag == 'link' or tag == 'script':
+    elif tag == 'link':
         data = request_http(source)
         writing(res_path, data)
 

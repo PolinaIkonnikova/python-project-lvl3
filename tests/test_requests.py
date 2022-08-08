@@ -11,12 +11,18 @@ from tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
 FAKE_URL = FAKE_LINKS['invalid_url1']
 
 
-def test_requests_http1():
+def test_requests_http():
     fixt = get_path_fixture('just_file.txt')
     with requests_mock.Mocker() as m:
         m.get(FAKE_URL, text=open(fixt, 'r').read(), status_code=200)
         assert request_http(FAKE_URL) == 'hello'
-        assert request_http(FAKE_URL, bytes=True) == b'hello'
+
+
+def test_requests_http_bytes():
+    fixt = get_path_fixture('site-com-blog-about-assets-styles.css')
+    with requests_mock.Mocker() as m:
+        m.get(FAKE_URL, text=open(fixt, 'r').read(), status_code=200)
+        assert request_http(FAKE_URL, bytes=True) == b'\xef\xbb\xbfh3 { font-weight: normal; }\n'
 
 
 @pytest.mark.parametrize('wrong_url', [FAKE_URL, FAKE_LINKS['invalid_url2'],
