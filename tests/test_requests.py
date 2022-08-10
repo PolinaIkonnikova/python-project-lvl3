@@ -7,7 +7,7 @@ from page_loader.resources_output import loading_res
 from page_loader.for_http import request_http
 from page_loader.aux.custom_exceptions import CommonPageLoaderException,\
     CommonRequestsError
-from tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
+from page_loader.tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
 
 
 FAKE_URL = FAKE_LINKS['invalid_url1']
@@ -27,7 +27,8 @@ def test_loading_res():
                            'source': "https://some_file.js",
                            'res_path': 'some_file.scc'}
         with requests_mock.Mocker() as m:
-            m.get("https://some_file.js", text=open(fixt, 'r').read(), status_code=200)
+            m.get("https://some_file.js", text=open(fixt, 'r').read(),
+                  status_code=200)
             loading_res(res_description, t)
         file = os.path.join(t, 'some_file.scc')
 

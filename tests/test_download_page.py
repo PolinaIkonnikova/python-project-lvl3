@@ -2,7 +2,7 @@ import os
 import tempfile
 import pytest
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
-from tests.fixtures.for_fixtures import get_path_fixture, FAKE_LINKS
+from page_loader.tests.fixtures.for_fixtures import get_path_fixture, FAKE_LINKS
 from page_loader.page_output import download_page
 from page_loader.work_with_files import true_name, valid_dir, writing
 

@@ -9,8 +9,7 @@ from page_loader import download
 def main(get_args=create_parser):
     url, output_path = get_args()
     try:
-        page_path = download(url, output_path)
-        print(f'Cтраница успешно сохранена {page_path}')
+        download(url, output_path)
         sys.exit(0)
     except CommonPageLoaderException:
         sys.exit(1)

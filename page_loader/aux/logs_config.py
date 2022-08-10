@@ -5,15 +5,6 @@ import sys
 FORMAT1 = '%(asctime)s - %(levelname)s - %(message)s'
 FORMAT2 = '%(message)s'
 DATE_FORMAT = '%d-%b-%y %H:%M:%S'
-
-
-# def logs_path():
-#     work_dir = os.getcwd().split('/')[-1]
-#     if work_dir == 'tests':
-#         return '../page_loader/aux/logs.log'
-#     return 'page_loader/aux/logs.log'
-#
-#
 # def get_file_handler():
 #     path = logs_path()
 #     file_handler = logging.FileHandler(path, 'w')
@@ -21,24 +12,35 @@ DATE_FORMAT = '%d-%b-%y %H:%M:%S'
 #     file_handler.setFormatter(logging.Formatter(FORMAT1,
 #                                                 datefmt=DATE_FORMAT))
 #     return file_handler
-def get_stderr_handler():
-    stream_handler = logging.StreamHandler(stream=sys.stderr)
-    stream_handler.setLevel(logging.WARNING)
-    stream_handler.setFormatter(logging.Formatter(FORMAT2,
-                                                  datefmt=DATE_FORMAT))
-    return stream_handler
 
 
-def get_stdout_handler():
-    stream_handler = logging.StreamHandler(stream=sys.stdout)
-    stream_handler.setLevel(logging.DEBUG)
-    stream_handler.setFormatter(logging.Formatter(FORMAT1))
-    return stream_handler
-
-
-def mistake_logger(name):
-    logger = logging.getLogger(name)
-    logger.setLevel(logging.DEBUG)
-    logger.addHandler(get_stderr_handler())
-    logger.addHandler(get_stdout_handler())
+def mistake_logger():
+    logger = logging.getLogger('warnings')
+    stream_err_handler = logging.StreamHandler(stream=sys.stderr)
+    stream_err_handler.setLevel(logging.WARNING)
+    stream_err_handler.setFormatter(logging.Formatter(FORMAT2))
+    stream_err_handler.addFilter(logging.Filter('warnings'))
+    logger.addHandler(stream_err_handler)
     return logger
+
+
+def success_logger():
+    logger = logging.getLogger('success')
+    logger.setLevel(logging.INFO)
+    stream_out_handler = logging.StreamHandler(stream=sys.stdout)
+    stream_out_handler.setLevel(logging.INFO)
+    stream_out_handler.setFormatter(logging.Formatter(FORMAT1,
+                                                      datefmt=DATE_FORMAT))
+    logger.addHandler(stream_out_handler)
+    return logger
+
+
+logger1 = success_logger()
+logger2 = mistake_logger()
+
+
+def logging_message(message, error=False):
+    if error is False:
+        logger1.info(message)
+    if error is True:
+        logger2.warning(message)

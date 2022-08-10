@@ -1,27 +1,26 @@
 import os
 import re
 from urllib.parse import urlparse
-from .aux.logs_config import mistake_logger
+from .aux.logs_config import logging_message
 from .aux.custom_exceptions import CommonPageLoaderException
-
-
-logger = mistake_logger(__name__)
 
 
 def valid_dir(output_path):
     try:
         if not os.path.isdir(output_path):
-            logger.warning('Кажется, выбранная директория'
-                           ' не существует или не директория вовсе!')
+            logging_message('Кажется, выбранная директория'
+                            ' не существует или не директория вовсе!',
+                            error=True)
             raise CommonPageLoaderException
         if not os.access(output_path, os.R_OK & os.W_OK & os.X_OK):
-            logger.warning('Придется выбрать другую директорию, '
-                           'малыш, ты еще слишком мал для использования этой.')
+            logging_message('Придется выбрать другую директорию, '
+                            'малыш, ты еще слишком мал для использования этой.',
+                            error=True)
             raise CommonPageLoaderException
         return output_path
     except (FileNotFoundError, FileExistsError) as e:
-        logger.warning('Что-то не так с выбранной директорией, '
-                       f'выбирай другую: {e}')
+        logging_message('Что-то не так с выбранной директорией, '
+                        f'выбирай другую: {e}', error=True)
         raise CommonPageLoaderException
 
 
@@ -46,8 +45,10 @@ def prepare_dir(url, output_path):
         os.mkdir(dir_path)
         return dir_name, dir_path
     except FileExistsError:
-        logger.warning('Папка для ресурсов уже существует, '
-                       'и возможно страница уже скачана. Стоит перепроверить!')
+        logging_message(f'Папка для ресурсов {dir_path} существует,\n'
+                        f'возможно, страница {url} уже скачана. '
+                        f'Стоит перепроверить!',
+                        error=True)
         raise
 
 
@@ -60,6 +61,6 @@ def writing(file, data, bytes=False):
         with open(file, tag) as f:
             f.write(data)
     except PermissionError:
-        logger.warning('Ошибка прав доступа, придется выбрать'
-                       'другую директорию!')
+        logging_message('Ошибка прав доступа, придется выбрать'
+                        'другую директорию!', error=True)
         raise CommonPageLoaderException

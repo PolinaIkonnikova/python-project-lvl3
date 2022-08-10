@@ -5,7 +5,7 @@ import shutil
 from bs4 import BeautifulSoup as bs
 from page_loader.resources_output import get_resources,\
     download_resources
-from tests.fixtures.for_fixtures import FAKE_LINKS,\
+from page_loader.tests.fixtures.for_fixtures import FAKE_LINKS,\
     get_path_fixture
 from page_loader.work_with_files import prepare_dir
 
