@@ -3,7 +3,7 @@ import requests_mock
 import pytest
 import tempfile
 from page_loader.scripts.page_loader import main
-from page_loader.tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
+from tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
 
 
 OK_URL = FAKE_LINKS['normal_url']

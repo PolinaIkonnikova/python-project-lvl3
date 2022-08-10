@@ -7,7 +7,7 @@ from page_loader.resources_output import loading_res
 from page_loader.for_http import request_http
 from page_loader.aux.custom_exceptions import CommonPageLoaderException,\
     CommonRequestsError
-from page_loader.tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
+from tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
 
 
 FAKE_URL = FAKE_LINKS['invalid_url1']
