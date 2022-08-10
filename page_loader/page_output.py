@@ -24,10 +24,10 @@ def download_page(url,
 def download(url, output_path):
     try:
         output_path = valid_dir(output_path)
-        dir_name, dir_path = prepare_dir(url, output_path)
         page_path = download_page(url, output_path)
-        logging_message(f'Cтраница {url} записана, переходим к ресурсам:\n'
-                        f'Директория для ресурсов {dir_path}')
+        logging_message(f'Cтраница {url} записана, переходим к ресурсам.')
+        dir_name, dir_path = prepare_dir(url, output_path)
+        logging_message(f'Директория для ресурсов {dir_path}')
         resources = get_resources(page_path, url, dir_name)
         download_resources(resources, output_path)
         logging_message(f'Страница загружена {page_path}')
