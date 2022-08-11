@@ -20,6 +20,7 @@ page-loader -h
 ```
 You need to enter a url and a path for downloading 
 (the default path is the working directory):
+
 Example 1 (100% загрузка в директорию по умолчанию, ошибка при повторном скачивании):
 [![asciicast](https://asciinema.org/a/uI5RSueTx7JtB1h3mwqHNPxjX.svg)](https://asciinema.org/a/uI5RSueTx7JtB1h3mwqHNPxjX)
 
