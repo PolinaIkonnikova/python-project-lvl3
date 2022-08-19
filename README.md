@@ -6,10 +6,6 @@ Save any static page and use it offline!
 [![Test Coverage](https://api.codeclimate.com/v1/badges/9247ba55b8f1dbb38bc8/test_coverage)](https://codeclimate.com/github/PolinaIkonnikova/python-project-lvl3/test_coverage)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9247ba55b8f1dbb38bc8/maintainability)](https://codeclimate.com/github/PolinaIkonnikova/python-project-lvl3/maintainability)
 
-### Сoобщение наставнику:
-- Хотелось бы изменить запись логов - info отправлять в файл, особенно все, что связано с ресурсами, а не в strout, в log_configs закомментирована часть настроек, уберу или добавлю после проверки.
-- Не всегда определяется код запроса к странице, бывает, что сразу вылетает ошибка соединения, поэтому в модуле два раза перехвачиваю connection error, не знаю, как лучше сделать. 
-
 #### for install: 
 ```
 make package-install
