@@ -36,7 +36,7 @@ def traceback_message(excp):
 def user_friendly_message(mes_key, *args):
     if not args:
         if mes_key == '404':
-            print(MESSAGES['404'])
+            print(MESSAGES[mes_key])
         elif mes_key[0] == '3':
             print(MESSAGES['3XX'])
         elif mes_key[0] == '4':

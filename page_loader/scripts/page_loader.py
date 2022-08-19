@@ -13,12 +13,6 @@ def read_logs(logs):
             print(f.read())
 
 
-def read_logs(logs):
-    if logs:
-        with open('page_loader/aux/logs.log', 'r') as f:
-            print(f.read())
-
-
 def main(get_args=create_parser):
 
     url, output_path, logs = get_args()
