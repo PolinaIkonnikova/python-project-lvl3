@@ -9,5 +9,8 @@ def create_parser():
     parser.add_argument('-o', '--output', type=str, default=os.getcwd(),
                         help='A path for new page '
                              '(default: your current directory)')
+    parser.add_argument('-l', '--logs', action='store_true',
+                        help='reading log file'
+                             '(default: your current directory)')
     args = parser.parse_args()
-    return args.url, args.output
+    return args.url, args.output, args.logs

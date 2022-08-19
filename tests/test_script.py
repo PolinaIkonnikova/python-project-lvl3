@@ -16,7 +16,7 @@ def test_script_page_loader_exit1():
         fixt2 = get_path_fixture('just_file.txt')
 
         def fake_parser():
-            return OK_URL, t
+            return OK_URL, t, None
 
         with requests_mock.Mocker() as m:
             m.get(OK_URL, text=open(fixt1, 'r').read(), status_code=200)
@@ -31,7 +31,7 @@ def test_script_page_loader_exit2():
     with tempfile.TemporaryDirectory() as t:
 
         def fake_parser():
-            return OK_URL, t
+            return OK_URL, t, None
 
         with requests_mock.Mocker() as m:
             m.get(OK_URL, text=open(fixt, 'r').read(), status_code=500)
@@ -47,7 +47,7 @@ def test_script_page_loader_exit3(warning_url):
     with tempfile.TemporaryDirectory() as t:
 
         def fake_parser():
-            return warning_url, t
+            return warning_url, t, None
 
         with pytest.raises(SystemExit) as e:
             main(get_args=fake_parser)
@@ -58,7 +58,7 @@ def test_script_page_loader_exit4():
     fixt = get_path_fixture('empty.html')
 
     def fake_parser():
-        return OK_URL, FAKE_LINKS['error_dir1']
+        return OK_URL, FAKE_LINKS['error_dir1'], None
 
     with requests_mock.Mocker() as m:
         m.get(OK_URL, text=open(fixt, 'r').read(), status_code=200)
@@ -67,14 +67,14 @@ def test_script_page_loader_exit4():
         assert e.value.code == 1
 
 
-def test_script_page_loader_exit5():
+def test_script_page_loader_exit5(capsys):
     dir_name = FAKE_LINKS['dir_for_resources']
     fixt = get_path_fixture('empty.html')
 
     with tempfile.TemporaryDirectory() as t:
 
         def fake_parser():
-            return OK_URL, t
+            return OK_URL, t, None
 
         os.mkdir(os.path.join(t, dir_name))
         with requests_mock.Mocker() as m:
