@@ -1,12 +1,12 @@
 import os
 import requests_mock
+import requests
 import tempfile
 import pytest
 from page_loader.page_output import download_page
 from page_loader.resources_output import loading_res
 from page_loader.for_http import request_http
-from page_loader.aux.custom_exceptions import CommonPageLoaderException,\
-    CommonRequestsError
+from page_loader.aux.custom_exceptions import CommonPageLoaderException
 from tests.fixtures.for_fixtures import FAKE_LINKS, get_path_fixture
 
 
@@ -36,19 +36,20 @@ def test_loading_res():
             assert f.read() == b'\xef\xbb\xbfh3 { font-weight: normal; }\n'
 
 
-@pytest.mark.parametrize('wrong_url', [FAKE_URL, FAKE_LINKS['invalid_url2'],
-                                       FAKE_LINKS['invalid_url3'],
-                                       FAKE_LINKS['invalid_url4']])
-def test_requests_http2(wrong_url):
-    with pytest.raises(CommonRequestsError):
-        request_http(wrong_url)
+def test_requests_http2():
+    with pytest.raises(requests.exceptions.InvalidSchema):
+        request_http(FAKE_URL)
+    with pytest.raises(requests.exceptions.ConnectionError):
+        request_http(FAKE_LINKS['invalid_url2'])
+    with pytest.raises(requests.exceptions.MissingSchema):
+        request_http(FAKE_LINKS['invalid_url3'])
 
 
 def test_requests_http3():
     fixt = get_path_fixture('just_file.txt')
     with requests_mock.Mocker() as m:
         m.get(FAKE_URL, text=open(fixt, 'r').read(), status_code=500)
-        with pytest.raises(CommonRequestsError):
+        with pytest.raises(CommonPageLoaderException):
             request_http(FAKE_URL)
 
 

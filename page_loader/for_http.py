@@ -1,6 +1,8 @@
 import requests
 from urllib.parse import urlparse
-from page_loader.aux.custom_exceptions import CommonRequestsError
+from .aux.logs_config import logger
+from .aux.print_message import traceback_message
+from .aux.custom_exceptions import CommonPageLoaderException
 
 
 def request_http(url, bytes=False):
@@ -8,11 +10,9 @@ def request_http(url, bytes=False):
         r = requests.get(url)
         status_code = r.status_code
         if status_code != 200:
-            message = f'Возникли неполадки с соединением,' \
-                      f'код ответа сервера - {status_code}.' \
-                      f'Страница {url} не может быть скачана =('
-            raise CommonRequestsError(url=url,
-                                      error=message)
+            logger.warning(f"The response code of {url} is {status_code}, "
+                           "the page didn't load")
+            raise CommonPageLoaderException(str(status_code))
         if bytes is True:
             method = r.content
         else:
@@ -20,14 +20,14 @@ def request_http(url, bytes=False):
         return method
     except (requests.exceptions.InvalidURL,
             requests.exceptions.InvalidSchema,
-            requests.exceptions.MissingSchema):
-        message = f'Неверый адрес страницы {url}, страница не скачана.'
-        raise CommonRequestsError(url=url,
-                                  error=message)
-    except requests.exceptions.ConnectionError as e:
-        message = f'С {url} произошла неприятность : {e}'
-        raise CommonRequestsError(url=url,
-                                  error=message)
+            requests.exceptions.MissingSchema) as e:
+        logger.warning(f'The invalid url {url}:\n'
+                       f'{traceback_message(e)}')
+        raise
+    except requests.RequestException as e:
+        logger.warning(f'{url} requests exception:\n'
+                       f'{traceback_message(e)}')
+        raise
 
 
 def is_valid_url(url):

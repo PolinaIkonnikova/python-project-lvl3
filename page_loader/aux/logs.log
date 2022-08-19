@@ -1,0 +1,48 @@
+19-Aug-22 23:51:45 - INFO - Start data:
+url https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion
+path /home/ulitka/python-project-lvl3
+19-Aug-22 23:51:45 - INFO - The page recording completed. Starting to work with resources.
+
+19-Aug-22 23:51:45 - INFO - The directory for resources is /home/ulitka/python-project-lvl3/en-wikipedia-org-wiki-Neon_Genesis_Evangelion_files
+19-Aug-22 23:51:46 - WARNING - The invalid url //en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1:
+Traceback (most recent call last):
+  File "/home/ulitka/python-project-lvl3/page_loader/for_http.py", line 10, in request_http
+    r = requests.get(url)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/sessions.py", line 695, in send
+    adapter = self.get_adapter(url=request.url)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/sessions.py", line 792, in get_adapter
+  No connection adapters were found for '//en.wikipedia.org/wiki/Special:CentralAutoLogin/start?type=1x1' (<class 'requests.exceptions.InvalidSchema'>)
+19-Aug-22 23:51:46 - INFO - The resource https://en.wikipedia.org/static/images/footer/wikimedia-button.png has loaded
+19-Aug-22 23:51:46 - INFO - The resource https://en.wikipedia.org/static/images/footer/poweredby_mediawiki_88x31.png has loaded
+19-Aug-22 23:51:47 - INFO - The resource https://en.wikipedia.org/w/load.php?lang=en&modules=ext.cite.styles%7Cext.uls.interlanguage%7Cext.visualEditor.desktopArticleTarget.noscript%7Cext.wikimediaBadges%7Cjquery.makeCollapsible.styles%7Cskins.vector.styles.legacy%7Cwikibase.client.init&only=styles&skin=vector has loaded
+19-Aug-22 23:51:47 - INFO - The resource https://en.wikipedia.org/w/load.php?lang=en&modules=site.styles&only=styles&skin=vector has loaded
+19-Aug-22 23:51:48 - INFO - The resource https://en.wikipedia.org/w/index.php?title=Neon_Genesis_Evangelion&action=edit has loaded
+19-Aug-22 23:51:49 - INFO - The resource https://en.wikipedia.org/static/apple-touch/wikipedia.png has loaded
+19-Aug-22 23:51:49 - INFO - The resource https://en.wikipedia.org/static/favicon/wikipedia.ico has loaded
+19-Aug-22 23:51:50 - INFO - The resource https://en.wikipedia.org/w/opensearch_desc.php has loaded
+19-Aug-22 23:51:50 - WARNING - The invalid url //en.wikipedia.org/w/api.php?action=rsd:
+Traceback (most recent call last):
+  File "/home/ulitka/python-project-lvl3/page_loader/for_http.py", line 10, in request_http
+    r = requests.get(url)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/sessions.py", line 573, in request
+    prep = self.prepare_request(req)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/sessions.py", line 484, in prepare_request
+    p.prepare(
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/models.py", line 368, in prepare
+    self.prepare_url(url, params)
+  File "/home/ulitka/python-project-lvl3/.venv/lib/python3.8/site-packages/requests/models.py", line 439, in prepare_url
+  Invalid URL '//en.wikipedia.org/w/api.php?action=rsd': No scheme supplied. Perhaps you meant http:////en.wikipedia.org/w/api.php?action=rsd? (<class 'requests.exceptions.MissingSchema'>)
+19-Aug-22 23:51:50 - INFO - The resource https://en.wikipedia.org/wiki/Neon_Genesis_Evangelion has loaded
+19-Aug-22 23:51:51 - INFO - The resource https://en.wikipedia.org/w/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector has loaded
+19-Aug-22 23:51:51 - INFO - The page /home/ulitka/python-project-lvl3/en-wikipedia-org-wiki-Neon_Genesis_Evangelion.html has loaded.
+19-Aug-22 23:51:51 - INFO - The program was completed. Exit Code is 0.

@@ -1,10 +1,12 @@
+import requests
 from page_loader.for_http import valid_link, request_http
 from urllib.parse import urlparse
+from .aux.print_message import user_friendly_message
 from bs4 import BeautifulSoup as bs
 from page_loader.work_with_files import true_name, make_path, writing
-from page_loader.aux.logs_config import logging_message
+from page_loader.aux.logs_config import logger
 from page_loader.progress_bar import download_progress
-from page_loader.aux.custom_exceptions import CommonRequestsError
+from page_loader.aux.custom_exceptions import CommonPageLoaderException
 
 
 def is_parent_netloc(url, parent_url):
@@ -60,25 +62,22 @@ def get_resources(html_page, parent_url, dir_name):
 def loading_res(res_description, output_path):
     source = res_description['source']
     res_path = make_path(output_path, res_description['res_path'])
-    data = request_http(source, bytes=True)
-    writing(res_path, data, bytes=True)
+    try:
+        data = request_http(source, bytes=True)
+        writing(res_path, data, bytes=True)
+        logger.info(f'The resource {source} has loaded')
+    except (PermissionError, CommonPageLoaderException,
+            requests.RequestException):
+        return
 
 
 def download_resources(resources_dict, output_path, writing_res=loading_res):
     if not resources_dict:
-        logging_message('На странице нет ресурсов, доступных для скачивания.')
+        logger.info("The page hasn't resources for downloading.")
+        user_friendly_message('no resources')
         return
     res_count = len(resources_dict)
-    log_list = []
     with download_progress(res_count) as p:
         for res in resources_dict:
-            try:
-                writing_res(res, output_path)
-                log_list.append(f"Ресурс {res['res_path']} загружен.")
-            except CommonRequestsError as e:
-                log_list.append(e.error)
-                continue
+            writing_res(res, output_path)
             p.next()
-
-    for log in log_list:
-        logging_message(log)

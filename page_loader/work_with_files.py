@@ -1,27 +1,24 @@
 import os
 import re
+from .aux.print_message import traceback_message
 from urllib.parse import urlparse
-from .aux.logs_config import logging_message
+from .aux.logs_config import logger
 from .aux.custom_exceptions import CommonPageLoaderException
 
 
 def valid_dir(output_path):
     try:
         if not os.path.isdir(output_path):
-            logging_message('Кажется, выбранная директория'
-                            ' не существует или не директория вовсе!',
-                            error=True)
-            raise CommonPageLoaderException
+            logger.error(f'{output_path} is not a directory.')
+            raise CommonPageLoaderException('not found dir')
         if not os.access(output_path, os.R_OK & os.W_OK & os.X_OK):
-            logging_message('Придется выбрать другую директорию, '
-                            'малыш, ты еще слишком мал для использования этой.',
-                            error=True)
-            raise CommonPageLoaderException
+            logger.error(f'No permissions for {output_path}.')
+            raise CommonPageLoaderException('no permissions')
         return output_path
     except (FileNotFoundError, FileExistsError) as e:
-        logging_message('Что-то не так с выбранной директорией, '
-                        f'выбирай другую: {e}', error=True)
-        raise CommonPageLoaderException
+        logger.error(f'The directory {output_path} not found:\n'
+                     f'{traceback_message(e)}')
+        raise CommonPageLoaderException('not found dir')
 
 
 def make_path(output_path, file_name):
@@ -44,11 +41,9 @@ def prepare_dir(url, output_path):
     try:
         os.mkdir(dir_path)
         return dir_name, dir_path
-    except FileExistsError:
-        logging_message(f'Папка для ресурсов {dir_path} существует,\n'
-                        f'возможно, страница {url} уже скачана. '
-                        f'Стоит перепроверить!',
-                        error=True)
+    except FileExistsError as e:
+        logger.error('File exist error:'
+                     f'{traceback_message(e)}')
         raise
 
 
@@ -60,7 +55,7 @@ def writing(file, data, bytes=False):
     try:
         with open(file, tag) as f:
             f.write(data)
-    except PermissionError:
-        logging_message('Ошибка прав доступа, придется выбрать'
-                        'другую директорию!', error=True)
-        raise CommonPageLoaderException
+    except PermissionError as e:
+        logger.warning(f'{file} permission error for writing:\n'
+                       f'{traceback_message(e)}')
+        raise
