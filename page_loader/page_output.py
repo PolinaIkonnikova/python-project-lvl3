@@ -39,8 +39,8 @@ def download(url, output_path):
         logger.info('The page recording completed. '
                     'Starting to work with resources.\n')
         dir_name, dir_path = prepare_dir(url, output_path)
-        logger.info(f'The directory for resources '
-                    f'is {os.path.abspath(dir_path)}')
+        logger.info('The directory for resources '
+                    f'is {dir_path}')
         user_friendly_message('resource dir', dir_path)
         resources = get_resources(page_path, url, dir_name)
         download_resources(resources, output_path)

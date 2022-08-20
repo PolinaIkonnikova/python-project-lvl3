@@ -48,3 +48,4 @@ def user_friendly_message(mes_key, *args):
     else:
         arg = args[0]
         print(MESSAGES[mes_key].format(arg))
+    return

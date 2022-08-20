@@ -17,11 +17,8 @@ page-loader -h
 You need to enter a url and a path for downloading 
 (the default path is the working directory):
 
-Example 1 (100% загрузка в директорию по умолчанию, ошибка при повторном скачивании):
-[![asciicast](https://asciinema.org/a/uI5RSueTx7JtB1h3mwqHNPxjX.svg)](https://asciinema.org/a/uI5RSueTx7JtB1h3mwqHNPxjX)
+Example 1:
+[![asciicast](https://asciinema.org/a/1OaoHYCUJsR2QNPHPpG8BaH3e.svg)](https://asciinema.org/a/1OaoHYCUJsR2QNPHPpG8BaH3e)
 
-Example 2 (Загрузка в указанную директорию, страница без ресурсов, ошибка неверной директории):
-[![asciicast](https://asciinema.org/a/XLcIhbsPZSYLI1OKPEXsGZZHg.svg)](https://asciinema.org/a/XLcIhbsPZSYLI1OKPEXsGZZHg)
-
-Example 3 (Неполная загрузка ресурсов, логи успешных и неудачных загрузок ресурсов):
-[![asciicast](https://asciinema.org/a/IQVlzRYqFvsHqpJblhG0mkUvj.svg)](https://asciinema.org/a/IQVlzRYqFvsHqpJblhG0mkUvj)
+Example 2:
+[![asciicast](https://asciinema.org/a/KEeRJI0glbLHTcuv9H5gH4ViZ.svg)](https://asciinema.org/a/KEeRJI0glbLHTcuv9H5gH4ViZ)

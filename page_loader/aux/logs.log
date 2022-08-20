@@ -1,9 +1,9 @@
-20-Aug-22 01:28:24 - INFO - Start data:
-url https://ru.hexlet.io/courses/python-advanced-testing/lessons/mocking/theory_unit
+21-Aug-22 01:10:39 - INFO - Start data:
+url https://docs.pytest.org/en/7.1.x/_modules/_pytest/tmpdir.html
 path /home/ulitka/python-project-lvl3
-20-Aug-22 01:28:25 - INFO - The page recording completed. Starting to work with resources.
+21-Aug-22 01:10:39 - INFO - The page recording completed. Starting to work with resources.
 
-20-Aug-22 01:28:25 - ERROR - File exist error:Traceback (most recent call last):
+21-Aug-22 01:10:39 - ERROR - File exist error:Traceback (most recent call last):
   File "/home/ulitka/python-project-lvl3/page_loader/work_with_files.py", line 42, in prepare_dir
-  [Errno 17] File exists: '/home/ulitka/python-project-lvl3/ru-hexlet-io-courses-python-advanced-testing-lessons-mocking-theory_unit_files' (<class 'FileExistsError'>)
-20-Aug-22 01:28:25 - WARNING - The program was completed. Exit Code is 2.
+  [Errno 17] File exists: '/home/ulitka/python-project-lvl3/docs-pytest-org-en-7-1-x-_modules-_pytest-tmpdir_files' (<class 'FileExistsError'>)
+21-Aug-22 01:10:39 - WARNING - The program was completed. Exit Code is 2.
