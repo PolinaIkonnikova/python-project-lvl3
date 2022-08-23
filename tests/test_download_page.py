@@ -4,7 +4,7 @@ import pytest
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
 from .fixtures.for_fixtures import get_path_fixture, FAKE_LINKS
 from page_loader.page_output import download_page
-from page_loader.work_with_files import true_name, valid_dir, writing
+from page_loader.work_with_files import make_name, valid_dir, write_file
 from page_loader.aux.print_message import user_friendly_message
 
 url = FAKE_LINKS['normal_url']
@@ -19,11 +19,11 @@ html_name_hexlet = FAKE_LINKS['new_html_name']
                           ('/ru.hexlet.io/courses.html',
                            'ru-hexlet-io-courses.html')])
 def test_true_naming(file_name, output_name):
-    assert true_name(file_name) == output_name
+    assert make_name(file_name) == output_name
 
 
 def test_true_dir_naming():
-    assert true_name(url, is_dir=True) == dir_name
+    assert make_name(url, is_dir=True) == dir_name
 
 
 @pytest.mark.parametrize('path', [FAKE_LINKS['invalid_url3'],
@@ -37,7 +37,7 @@ def test_writing_text():
     data = 'hello'
     with tempfile.TemporaryDirectory() as d:
         path_file = os.path.join(d, 'new_file.html')
-        writing(path_file, data)
+        write_file(path_file, data)
         with open(path_file, 'r') as f:
             assert data == f.read()
 
@@ -50,7 +50,7 @@ def test_writing_bytes():
 
     with tempfile.TemporaryDirectory() as d:
         path_file = os.path.join(d, 'meow2.jpeg')
-        writing(path_file, data, bytes=True)
+        write_file(path_file, data, bytes=True)
         pic_size2 = os.path.getsize(path_file)
         assert pic_size == pic_size2
 

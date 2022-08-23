@@ -2,7 +2,7 @@ import os
 import argparse
 
 
-def create_parser():
+def get_args():
     parser = argparse.ArgumentParser(description='Page Loader')
     parser.add_argument('url', type=str, default="no_page",
                         help='url for downloading')

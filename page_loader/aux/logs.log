@@ -1,9 +1,60 @@
-21-Aug-22 01:10:39 - INFO - Start data:
-url https://docs.pytest.org/en/7.1.x/_modules/_pytest/tmpdir.html
+23-Aug-22 18:25:22 - INFO - Start data:
+url https://kirill-sklyarenko.ru/lenta/python-patches-mocks-anti-patterns
 path /home/ulitka/python-project-lvl3
-21-Aug-22 01:10:39 - INFO - The page recording completed. Starting to work with resources.
+23-Aug-22 18:25:23 - INFO - The page recording completed. Starting to work with resources.
 
-21-Aug-22 01:10:39 - ERROR - File exist error:Traceback (most recent call last):
-  File "/home/ulitka/python-project-lvl3/page_loader/work_with_files.py", line 42, in prepare_dir
-  [Errno 17] File exists: '/home/ulitka/python-project-lvl3/docs-pytest-org-en-7-1-x-_modules-_pytest-tmpdir_files' (<class 'FileExistsError'>)
-21-Aug-22 01:10:39 - WARNING - The program was completed. Exit Code is 2.
+23-Aug-22 18:25:23 - INFO - The directory for resources is /home/ulitka/python-project-lvl3/kirill-sklyarenko-ru-lenta-python-patches-mocks-anti-patterns_files
+23-Aug-22 18:25:24 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_002.jpg has loaded
+23-Aug-22 18:25:25 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_011.jpg has loaded
+23-Aug-22 18:25:26 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_012.jpg has loaded
+23-Aug-22 18:25:26 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_014.jpg has loaded
+23-Aug-22 18:25:27 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_017.jpg has loaded
+23-Aug-22 18:25:28 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_021.jpg has loaded
+23-Aug-22 18:25:30 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_022.jpg has loaded
+23-Aug-22 18:25:30 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_031.jpg has loaded
+23-Aug-22 18:25:32 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_041.jpg has loaded
+23-Aug-22 18:25:34 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_048.jpg has loaded
+23-Aug-22 18:25:35 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_051.jpg has loaded
+23-Aug-22 18:25:35 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_081.jpg has loaded
+23-Aug-22 18:25:36 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_085.jpg has loaded
+23-Aug-22 18:25:37 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_086.jpg has loaded
+23-Aug-22 18:25:38 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_087.jpg has loaded
+23-Aug-22 18:25:40 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_102.jpg has loaded
+23-Aug-22 18:25:41 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_104.jpg has loaded
+23-Aug-22 18:25:41 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_105.jpg has loaded
+23-Aug-22 18:25:42 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_106.jpg has loaded
+23-Aug-22 18:25:42 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_107.jpg has loaded
+23-Aug-22 18:25:44 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_108.jpg has loaded
+23-Aug-22 18:25:46 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_109.jpg has loaded
+23-Aug-22 18:25:47 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_110.jpg has loaded
+23-Aug-22 18:25:47 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_114.jpg has loaded
+23-Aug-22 18:25:48 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_115.jpg has loaded
+23-Aug-22 18:25:49 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_117.jpg has loaded
+23-Aug-22 18:25:49 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_118.jpg has loaded
+23-Aug-22 18:25:50 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_124.jpg has loaded
+23-Aug-22 18:25:51 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_125.jpg has loaded
+23-Aug-22 18:25:52 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_126.jpg has loaded
+23-Aug-22 18:25:54 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_127.jpg has loaded
+23-Aug-22 18:25:55 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_130.jpg has loaded
+23-Aug-22 18:25:56 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_131.jpg has loaded
+23-Aug-22 18:25:57 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_132.jpg has loaded
+23-Aug-22 18:25:58 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_140.jpg has loaded
+23-Aug-22 18:25:58 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_147.jpg has loaded
+23-Aug-22 18:25:59 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_149.jpg has loaded
+23-Aug-22 18:26:00 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_152.jpg has loaded
+23-Aug-22 18:26:00 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_156.jpg has loaded
+23-Aug-22 18:26:02 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_158.jpg has loaded
+23-Aug-22 18:26:03 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_159.jpg has loaded
+23-Aug-22 18:26:04 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_160.jpg has loaded
+23-Aug-22 18:26:05 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_161.jpg has loaded
+23-Aug-22 18:26:05 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_164.jpg has loaded
+23-Aug-22 18:26:06 - INFO - The resource https://kirill-sklyarenko.ru/images/mocks_and_patches_antipatterns_python/Mocking and Patching Pitfalls_Страница_165.jpg has loaded
+23-Aug-22 18:26:07 - INFO - The resource https://kirill-sklyarenko.ru/lenta/python-patches-mocks-anti-patterns has loaded
+23-Aug-22 18:26:07 - INFO - The resource https://kirill-sklyarenko.ru/lenta/python-patches-mocks-anti-patterns has loaded
+23-Aug-22 18:26:07 - INFO - The resource https://kirill-sklyarenko.ru/images/favicon.png has loaded
+23-Aug-22 18:26:07 - INFO - The resource https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/css/389a0c775a84d1f039627ca72fb3d198.css has loaded
+23-Aug-22 18:26:08 - INFO - The resource https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/css/f8a1425bab88cd8dd33cd5754cda5947.css has loaded
+23-Aug-22 18:26:08 - INFO - The resource https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/js/bb7e317865b7a0ab5d1d610e91842766.js has loaded
+23-Aug-22 18:26:09 - INFO - The resource https://kirill-sklyarenko.ru/media/com_jchoptimize/cache/js/326427870cd4c9056b9f7acdca0ebce1.js has loaded
+23-Aug-22 18:26:09 - INFO - The page /home/ulitka/python-project-lvl3/kirill-sklyarenko-ru-lenta-python-patches-mocks-anti-patterns.html has loaded.
+23-Aug-22 18:26:09 - INFO - The program was completed. Exit Code is 0.

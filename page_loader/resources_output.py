@@ -1,12 +1,16 @@
 import requests
 from page_loader.for_http import valid_link, request_http
 from urllib.parse import urlparse
-from .aux.print_message import user_friendly_message
 from bs4 import BeautifulSoup as bs
-from page_loader.work_with_files import true_name, make_path, writing
+from page_loader.work_with_files import make_name,\
+    make_path, write_file
 from page_loader.aux.logs_config import logger
+from .aux.print_message import traceback_message
 from page_loader.progress_bar import download_progress
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
+
+
+RES_TAGS = {'img': 'src', 'link': 'href', 'script': 'src'}
 
 
 def is_parent_netloc(url, parent_url):
@@ -15,69 +19,51 @@ def is_parent_netloc(url, parent_url):
     return not(cond1 and cond2)
 
 
-def is_path(url):
-    return not(not(urlparse(url).netloc) and url[0] != '/')
+def make_res_name(source, dir_path):
+    return make_path(dir_path, make_name(source))
 
 
-def new_resource_path(source, dir_path):
-    new_name = true_name(source)
-    return make_path(dir_path, new_name)
+def get_resources(soup, parent_url):
+    all_resources = list(map(lambda tag, atr: soup.find_all(tag,
+                                                            attrs={atr: True}),
+                             RES_TAGS.keys(), RES_TAGS.values()))
+
+    filter_resources = list(filter(lambda res:
+                                   is_parent_netloc(res[RES_TAGS[res.name]],
+                                                    parent_url),
+                                   sum(all_resources, [])))
+    return filter_resources
 
 
-def resource_filter(atr, parent_url, resources):
-    first = [res for res in resources if is_parent_netloc(res[atr],
-                                                          parent_url)]
-    second = [res for res in first if is_path(res[atr])]
-    return second
-
-
-def get_resources(html_page, parent_url, dir_name):
-
-    resource_tag = {'img': 'src', 'link': 'href', 'script': 'src'}
-    for_downloading = []
+def download_resources(html_page, parent_url, dir_name, output_path):
 
     with open(html_page, 'r', encoding='utf-8') as hp:
-
         soup = bs(hp.read(), features="html.parser")
+        all_resources = get_resources(soup, parent_url)
 
-        for tag, atr in resource_tag.items():
-            all_resources = soup.find_all(tag, attrs={atr: True})
-            resource_list = resource_filter(atr, parent_url, all_resources)
+        if not all_resources:
+            return
 
-            for res in resource_list:
-                source = valid_link(res[atr], parent_url)
-                res_path = new_resource_path(source, dir_name)
-                res_description = dict([('tag', tag),
-                                        ('source', source),
-                                        ('res_path', res_path)])
-                for_downloading.append(res_description)
-                res[atr] = res_path
+        with download_progress(len(all_resources)) as p:
+            for res in all_resources:
+                p.next()
+                source = RES_TAGS[res.name]
+                res_url = valid_link(res[source], parent_url)
+                try:
+                    data = request_http(res_url, bytes=True)
+                    res_name = make_res_name(res_url, dir_name)
+                    res_path = make_path(output_path, res_name)
+                    write_file(res_path, data, bytes=True)
+                    logger.info(f'The resource {res_url} has loaded')
+                except (PermissionError, CommonPageLoaderException,
+                        requests.RequestException):
+                    continue
+                except Exception as e:
+                    logger.warning(f'Unexpected wrong with resourse {res_url}, '
+                                   f'not downloaded:\n{traceback_message(e)}')
+                    continue
+                else:
+                    res[source] = res_name
 
     with open(html_page, 'w') as hp:
         hp.write(soup.prettify())
-
-    return for_downloading
-
-
-def loading_res(res_description, output_path):
-    source = res_description['source']
-    res_path = make_path(output_path, res_description['res_path'])
-    try:
-        data = request_http(source, bytes=True)
-        writing(res_path, data, bytes=True)
-        logger.info(f'The resource {source} has loaded')
-    except (PermissionError, CommonPageLoaderException,
-            requests.RequestException):
-        return
-
-
-def download_resources(resources_dict, output_path, writing_res=loading_res):
-    if not resources_dict:
-        logger.info("The page hasn't resources for downloading.")
-        user_friendly_message('no resources')
-        return
-    res_count = len(resources_dict)
-    with download_progress(res_count) as p:
-        for res in resources_dict:
-            writing_res(res, output_path)
-            p.next()

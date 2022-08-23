@@ -2,10 +2,10 @@ import os
 import tempfile
 import pytest
 import shutil
+import requests_mock
 from bs4 import BeautifulSoup as bs
-from page_loader.resources_output import get_resources,\
-    download_resources
-from tests.fixtures.for_fixtures import FAKE_LINKS,\
+from page_loader.resources_output import download_resources, get_resources
+from .fixtures.for_fixtures import FAKE_LINKS,\
     get_path_fixture
 from page_loader.work_with_files import prepare_dir
 
@@ -32,53 +32,34 @@ def test_prepare_dir2():
             prepare_dir(URL, d)
 
 
-def fake_writing(res, output_path):
-    path = os.path.join(output_path, res['res_path'])
-    with open(path, 'x'):
-        pass
+def test_get_resources():
+    fixt = get_path_fixture('before.html')
+    with open(fixt, 'r', encoding='utf-8') as f:
+        soup = bs(f.read(), features="html.parser")
+        all_resources = get_resources(soup, URL)
+        assert len(all_resources) == 5
 
 
-def test_download_resources1():
+def test_download_resources():
+    fixt1 = get_path_fixture('one_png.html')
+    fixt2 = get_path_fixture('just_file.txt')
     with tempfile.TemporaryDirectory() as t:
-        res_path1 = os.path.join(t, "ru-hexlet-io-courses_files/"
-                                    "ru-hexlet-io-packs-js-runtime.js")
-        res_path2 = os.path.join(t, "meow.png")
-        res_dict1 = [{'tag': 'script',
-                      'source': "https://ru.hexlet.io/packs/js/runtime.js",
-                      'res_path': res_path1},
-                     {'source': "https://ru.hexlet.io/meow.png",
-                      'tag': 'img',
-                      'res_path': res_path2}]
-        os.mkdir(os.path.join(t, DIR_NAME))
-        download_resources(res_dict1, t, writing_res=fake_writing)
-        assert os.path.exists(res_path1)
-        assert os.path.exists(res_path2)
-
-
-def test_download_resources2():
-    res_dict = []
-    assert download_resources(res_dict, 'some_dir') is None
-
-
-def test_get_resources1():
-    fixt = get_path_fixture('one_png.html')
-    with tempfile.TemporaryDirectory() as t:
-        temp_fixt = shutil.copyfile(fixt, os.path.join(t, 'test.html'))
-        resources = get_resources(temp_fixt, URL, DIR_NAME)
-        res = resources[0]
-        assert res['tag'] == 'img'
-        assert res['source'] == NEW_PNG_SOURCE
-        assert res['res_path'] == NEW_PNG_PATH
+        os.mkdir(os.path.join(t, 'ru-hexlet-io-courses_files'))
+        temp_fixt = shutil.copyfile(fixt1, os.path.join(t, 'test.html'))
+        with requests_mock.Mocker() as m:
+            m.get(NEW_PNG_SOURCE, text=open(fixt2, 'r').read(),
+                  status_code=200)
+            download_resources(temp_fixt, URL, DIR_NAME, t)
 
         with open(temp_fixt, 'r') as f:
             soup = bs(f.read(), features="html.parser")
             test_res = soup.find_all('img')
             assert test_res[0]['src'] == NEW_PNG_PATH
 
+        assert os.path.exists(os.path.join(t, NEW_PNG_PATH))
 
-def test_get_resources2():
-    fixt = get_path_fixture('before.html')
+
+def test_download_resources2():
+    fixt = get_path_fixture('empty.html')
     with tempfile.TemporaryDirectory() as t:
-        temp_fixt = shutil.copyfile(fixt, os.path.join(t, 'test.html'))
-        resources = get_resources(temp_fixt, URL, t)
-        assert len(resources) == 4
+        assert download_resources(fixt, URL, DIR_NAME, t) is None

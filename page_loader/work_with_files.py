@@ -25,7 +25,7 @@ def make_path(output_path, file_name):
     return os.path.join(output_path, file_name)
 
 
-def true_name(url, is_dir=False):
+def make_name(url, is_dir=False):
     path_part, ending = os.path.splitext(url)
     if is_dir is True:
         ending = '_files'
@@ -36,8 +36,8 @@ def true_name(url, is_dir=False):
 
 
 def prepare_dir(url, output_path):
-    dir_name = true_name(url, is_dir=True)
-    dir_path = make_path(output_path, true_name(url, is_dir=True))
+    dir_name = make_name(url, is_dir=True)
+    dir_path = make_path(output_path, make_name(url, is_dir=True))
     try:
         os.mkdir(dir_path)
         return dir_name, dir_path
@@ -47,7 +47,7 @@ def prepare_dir(url, output_path):
         raise
 
 
-def writing(file, data, bytes=False):
+def write_file(file, data, bytes=False):
     if bytes is True:
         tag = 'wb'
     else:

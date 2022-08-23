@@ -16,28 +16,21 @@ fixt1 = get_path_fixture('one_png.html')
 fixt2 = get_path_fixture('just_file.txt')
 
 
-@patch('page_loader.page_output.get_resources')
-@patch('page_loader.page_output.user_friendly_message')
-def test_download1(uf_mock, gr_mock):
+def test_download1():
     with tempfile.TemporaryDirectory() as t:
         page_path = os.path.join(t, html_name_hexlet)
-        dir_path = os.path.join(t, dir_name)
         with requests_mock.Mocker() as m:
             m.get(url, text=open(fixt1, 'r').read(), status_code=200)
             m.get(png_source, text=open(fixt2, 'r').read(), status_code=404)
             assert page_path == download(url, t)
-            gr_mock.assert_called_once_with(page_path, url, dir_name)
-            uf_mock.assert_called_once_with('resource dir', dir_path)
 
 
-@patch('page_loader.page_output.user_friendly_message')
-def test_download2(uf_mock):
+def test_download2():
     with tempfile.TemporaryDirectory() as t:
         with requests_mock.Mocker() as m:
             m.get(url, text=open(fixt1, 'r').read(), status_code=500)
             with pytest.raises(CommonPageLoaderException):
                 download(url, t)
-            assert uf_mock.call_count
 
 
 @patch('page_loader.page_output.prepare_dir')
