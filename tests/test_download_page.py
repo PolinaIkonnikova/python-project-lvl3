@@ -1,6 +1,7 @@
 import os
 import tempfile
 import pytest
+from unittest.mock import patch
 from page_loader.aux.custom_exceptions import CommonPageLoaderException
 from .fixtures.for_fixtures import get_path_fixture, FAKE_LINKS
 from page_loader.page_output import download_page
@@ -55,14 +56,12 @@ def test_writing_bytes():
         assert pic_size == pic_size2
 
 
-def fake_data(*args):
-    return 'hello'
-
-
-def test_download_page1():
+@patch('page_loader.page_output.request_http')
+def test_download_page1(rh_mock):
+    rh_mock.return_value = 'hello'
     with tempfile.TemporaryDirectory() as d:
         path_file = os.path.join(d, html_name_hexlet)
-        new_html = download_page(url, d, get_content=fake_data)
+        new_html = download_page(url, d)
         assert os.path.exists(new_html)
         assert new_html == path_file
 

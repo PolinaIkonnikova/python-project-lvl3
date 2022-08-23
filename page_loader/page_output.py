@@ -8,13 +8,10 @@ from page_loader.resources_output import download_resources
 from page_loader.work_with_files import prepare_dir, valid_dir
 
 
-def download_page(url,
-                  output_path,
-                  get_content=request_http
-                  ):
+def download_page(url, output_path):
     try:
         new_html = make_path(output_path, make_name(url))
-        content = get_content(url)
+        content = request_http(url)
         write_file(new_html, content)
         return new_html
     except CommonPageLoaderException:

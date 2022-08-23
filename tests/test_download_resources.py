@@ -50,12 +50,6 @@ def test_download_resources():
             m.get(NEW_PNG_SOURCE, text=open(fixt2, 'r').read(),
                   status_code=200)
             download_resources(temp_fixt, URL, DIR_NAME, t)
-
-        with open(temp_fixt, 'r') as f:
-            soup = bs(f.read(), features="html.parser")
-            test_res = soup.find_all('img')
-            assert test_res[0]['src'] == NEW_PNG_PATH
-
         assert os.path.exists(os.path.join(t, NEW_PNG_PATH))
 
 
