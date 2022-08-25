@@ -1,3 +1,5 @@
+import os
+import re
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urlparse, urljoin
 
@@ -19,10 +21,15 @@ def is_parent_netloc(url, parent_url):
     return not(cond1 and cond2)
 
 
-def is_valid_url(url):
-    parsed = urlparse(url)
-    return bool(parsed.netloc) and bool(parsed.scheme)
-
-
 def valid_link(link, parent_url):
     return urljoin(parent_url, link)
+
+
+def make_name(url, is_dir=False):
+    path_part, ending = os.path.splitext(url)
+    if is_dir is True:
+        ending = '_files'
+    if not ending:
+        ending = '.html'
+    path_body = urlparse(path_part).netloc + urlparse(path_part).path
+    return '-'.join(re.findall(r'\w+', path_body)) + ending

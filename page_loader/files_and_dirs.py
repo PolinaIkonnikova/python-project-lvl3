@@ -1,9 +1,8 @@
 import os
-import re
 from .aux.print_message import traceback_message
-from urllib.parse import urlparse
 from .aux.logs_config import logger
 from .aux.custom_exceptions import CommonPageLoaderException
+from .urlib_and_bs import make_name
 
 
 def valid_dir(output_path):
@@ -23,16 +22,6 @@ def valid_dir(output_path):
 
 def make_path(output_path, file_name):
     return os.path.join(output_path, file_name)
-
-
-def make_name(url, is_dir=False):
-    path_part, ending = os.path.splitext(url)
-    if is_dir is True:
-        ending = '_files'
-    if not ending:
-        ending = '.html'
-    path_body = urlparse(path_part).netloc + urlparse(path_part).path
-    return '-'.join(re.findall(r'\w+', path_body)) + ending
 
 
 def prepare_dir(url, output_path):

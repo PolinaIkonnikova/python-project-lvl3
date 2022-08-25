@@ -1,12 +1,12 @@
 import os.path
 import requests
 from page_loader.http import request_http
-from .work_with_files import make_name, make_path, write_file
+from .files_and_dirs import make_name, make_path, write_file
 from .aux.logs_config import logger
 from .aux.custom_exceptions import CommonPageLoaderException
-from page_loader.urls_and_bs import get_soup, save_html_changes,\
+from page_loader.urlib_and_bs import get_soup, save_html_changes,\
     valid_link, is_parent_netloc
-from page_loader.work_with_files import prepare_dir, valid_dir
+from page_loader.files_and_dirs import prepare_dir, valid_dir
 from .aux.print_message import traceback_message
 from page_loader.progress_bar import download_progress
 
