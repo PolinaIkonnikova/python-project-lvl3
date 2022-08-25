@@ -1,11 +1,10 @@
 import requests
-from urllib.parse import urlparse
-from .aux.logs_config import logger
-from .aux.print_message import traceback_message
-from .aux.custom_exceptions import CommonPageLoaderException
+from page_loader.aux.logs_config import logger
+from page_loader.aux.print_message import traceback_message
+from page_loader.aux.custom_exceptions import CommonPageLoaderException
 
 
-def request_http(url, bytes=False):
+def request_http(url):
     try:
         r = requests.get(url)
         status_code = r.status_code
@@ -13,11 +12,7 @@ def request_http(url, bytes=False):
             logger.warning(f"The response code of {url} is {status_code}, "
                            "the page didn't load")
             raise CommonPageLoaderException(str(status_code))
-        if bytes is True:
-            method = r.content
-        else:
-            method = r.text
-        return method
+        return r.content
     except (requests.exceptions.InvalidURL,
             requests.exceptions.InvalidSchema,
             requests.exceptions.MissingSchema) as e:
@@ -28,14 +23,3 @@ def request_http(url, bytes=False):
         logger.warning(f'{url} requests exception:\n'
                        f'{traceback_message(e)}')
         raise
-
-
-def is_valid_url(url):
-    parsed = urlparse(url)
-    return bool(parsed.netloc) and bool(parsed.scheme)
-
-
-def valid_link(link, parent_url):
-    if not urlparse(link).netloc:
-        return urlparse(parent_url)._replace(path=link).geturl()
-    return link

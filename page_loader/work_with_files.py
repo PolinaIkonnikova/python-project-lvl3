@@ -37,7 +37,7 @@ def make_name(url, is_dir=False):
 
 def prepare_dir(url, output_path):
     dir_name = make_name(url, is_dir=True)
-    dir_path = make_path(output_path, make_name(url, is_dir=True))
+    dir_path = make_path(output_path, dir_name)
     try:
         os.mkdir(dir_path)
         return dir_name, dir_path
@@ -47,13 +47,9 @@ def prepare_dir(url, output_path):
         raise
 
 
-def write_file(file, data, bytes=False):
-    if bytes is True:
-        tag = 'wb'
-    else:
-        tag = 'w'
+def write_file(file, data):
     try:
-        with open(file, tag) as f:
+        with open(file, 'wb') as f:
             f.write(data)
     except PermissionError as e:
         logger.warning(f'{file} permission error for writing:\n'

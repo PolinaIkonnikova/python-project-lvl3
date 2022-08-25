@@ -1,14 +1,11 @@
 import os
 import tempfile
 import pytest
-import shutil
-import requests_mock
 from bs4 import BeautifulSoup as bs
-from page_loader.resources_output import download_resources, get_resources
 from .fixtures.for_fixtures import FAKE_LINKS,\
     get_path_fixture
 from page_loader.work_with_files import prepare_dir
-
+from page_loader.page_output import get_resources
 
 URL = FAKE_LINKS['normal_url']
 DIR_NAME = FAKE_LINKS['dir_for_resources']
@@ -38,22 +35,3 @@ def test_get_resources():
         soup = bs(f.read(), features="html.parser")
         all_resources = get_resources(soup, URL)
         assert len(all_resources) == 5
-
-
-def test_download_resources():
-    fixt1 = get_path_fixture('one_png.html')
-    fixt2 = get_path_fixture('just_file.txt')
-    with tempfile.TemporaryDirectory() as t:
-        os.mkdir(os.path.join(t, 'ru-hexlet-io-courses_files'))
-        temp_fixt = shutil.copyfile(fixt1, os.path.join(t, 'test.html'))
-        with requests_mock.Mocker() as m:
-            m.get(NEW_PNG_SOURCE, text=open(fixt2, 'r').read(),
-                  status_code=200)
-            download_resources(temp_fixt, URL, DIR_NAME, t)
-        assert os.path.exists(os.path.join(t, NEW_PNG_PATH))
-
-
-def test_download_resources2():
-    fixt = get_path_fixture('empty.html')
-    with tempfile.TemporaryDirectory() as t:
-        assert download_resources(fixt, URL, DIR_NAME, t) is None

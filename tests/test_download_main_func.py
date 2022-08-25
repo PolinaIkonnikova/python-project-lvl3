@@ -20,14 +20,11 @@ new_png_path = "ru-hexlet-io-courses_files/" \
                "ru-hexlet-io-assets-professions-nodejs.png"
 old_source = '/assets/professions/nodejs.png'
 
-# Не стала проверять html файлы до-после, так как BeautifulSoup после
-# сохранения изменений немного меняет разметку страницы, и об этом указано
-# в одном из шагов проекта. Решила проверить конкретные изменения атрибута,
-# надеюсь, что этого достаточно.
 
 
 @pytest.mark.parametrize('code, new_source', [(200, new_png_path),
                                               (404, old_source)])
+
 def test_download1(code, new_source):
     with tempfile.TemporaryDirectory() as t:
         page_path = os.path.join(t, html_name_hexlet)
@@ -35,14 +32,22 @@ def test_download1(code, new_source):
             m.get(url, text=open(fixt1, 'r').read(), status_code=200)
             m.get(png_source, text=open(fixt2, 'r').read(), status_code=code)
             assert page_path == download(url, t)
-
             with open(page_path, 'r') as f:
                 soup = bs(f.read(), features="html.parser")
                 test_res = soup.find_all('img')
                 assert test_res[0]['src'] == new_source
 
 
-def test_download2():
+@pytest.mark.parametrize('wrong_url', [FAKE_LINKS['invalid_url1'],
+                                       FAKE_LINKS['invalid_url3'],
+                                       html_name_hexlet])
+def test_download2(wrong_url):
+    with tempfile.TemporaryDirectory() as d:
+        with pytest.raises(CommonPageLoaderException):
+            download(wrong_url, d)
+
+
+def test_download3():
     with tempfile.TemporaryDirectory() as t:
         with requests_mock.Mocker() as m:
             m.get(url, text=open(fixt1, 'r').read(), status_code=500)
@@ -51,7 +56,7 @@ def test_download2():
 
 
 @patch('page_loader.page_output.prepare_dir')
-def test_download3(pd_mock):
+def test_download4(pd_mock):
     with tempfile.TemporaryDirectory() as t:
         pd_mock.side_effect = FileExistsError
         with requests_mock.Mocker() as m:
